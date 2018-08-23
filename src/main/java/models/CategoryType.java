@@ -1,6 +1,6 @@
 package models;
 
-public enum CategoryTypes {
+public enum CategoryType {
 
     APPLIANCES("Appliances"),
     AUDIOANDSTEREO("Audio & Stereo"),
@@ -14,7 +14,7 @@ public enum CategoryTypes {
     HOMEANDGARDEN("Home & Garden"),
     HOUSECLEARANCE("House Clearance"),
     MUSICFILMSBOOKSANDGAMES("Music Films Books & Games"),
-    MUSICALISNTRUMENTSANDDJEQUIPMENT("Musical Isntruments & Dj Equipment"),
+    MUSICALISNTRUMENTSANDDJEQUIPMENT("Musical Instruments & Dj Equipment"),
     OFFICEFURNITUREANDEQUIPMENT("Office Furniture & Equipment"),
     PHONESMOBILEPHONESANDTELECOMS("Phones Mobile Phones & Telecoms"),
     SPORTSLEISUREANDTRAVEL("Sports Leisure & Travel"),
@@ -26,7 +26,7 @@ public enum CategoryTypes {
     STUFFWANTED("Stuff Wanted"),
     SWAPSHOP("Swapshop");
 
-    CategoryTypes(String prettyText) {
+    CategoryType(String prettyText) {
         this.prettyText = prettyText;
     }
 

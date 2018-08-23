@@ -18,11 +18,11 @@ public class Advert {
     private int id;
     private String title;
     private String description;
-    private String category;
+    private CategoryType category;
     private int askingPrice;
-    private String deliveryOption;
+    private DeliveryType deliveryOption;
 
-    public Advert(String title, String description, String category, int askingPrice, String deliveryOption) {
+    public Advert(String title, String description, CategoryType category, int askingPrice, DeliveryType deliveryOption) {
         this.title = title;
         this.description = description;
         this.category = category;
@@ -62,12 +62,12 @@ public class Advert {
         this.description = description;
     }
 
-    //AWAITING ENUM
-    public String getCategory() {
+    @Enumerated(value = EnumType.STRING)
+    public CategoryType getCategory() {
         return category;
     }
 
-    public void setCategory(String category) {
+    public void setCategory(CategoryType category) {
         this.category = category;
     }
 
@@ -80,12 +80,12 @@ public class Advert {
         this.askingPrice = askingPrice;
     }
 
-    //AWAITING ENUM
-    public String getDeliveryOption() {
+    @Enumerated(value = EnumType.STRING)
+    public DeliveryType getDeliveryOption() {
         return deliveryOption;
     }
 
-    public void setDeliveryOption(String deliveryOption) {
+    public void setDeliveryOption(DeliveryType deliveryOption) {
         this.deliveryOption = deliveryOption;
     }
 

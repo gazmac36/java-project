@@ -1,4 +1,6 @@
 import models.Advert;
+import models.CategoryType;
+import models.DeliveryType;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -9,7 +11,7 @@ public class AdvertTest {
 
     @Before
     public void before(){
-        advert = new Advert("Awesome Guitar, used by Hendrix", "Awesome guitar that Hendrix destroyed during his 1974 concert, restored to functionality", "Instruments", 10000, "Pick-up");
+        advert = new Advert("Awesome Guitar, used by Hendrix", "Awesome guitar that Hendrix destroyed during his 1974 concert, restored to functionality", CategoryType.MUSICALISNTRUMENTSANDDJEQUIPMENT, 10000, DeliveryType.PICKUP);
     }
 
     @Test
@@ -24,7 +26,7 @@ public class AdvertTest {
 
     @Test
     public void advertHasCategory(){
-        assertEquals("Instruments", advert.getCategory());
+        assertEquals(CategoryType.MUSICALISNTRUMENTSANDDJEQUIPMENT, advert.getCategory());
     }
 
     @Test
@@ -34,7 +36,7 @@ public class AdvertTest {
 
     @Test
     public void advertHasDeliveryOption(){
-        assertEquals("Pick-up", advert.getDeliveryOption());
+        assertEquals(DeliveryType.PICKUP, advert.getDeliveryOption());
     }
 
     @Test
@@ -51,8 +53,8 @@ public class AdvertTest {
 
     @Test
     public void advertCanSetCategory(){
-        advert.setCategory("Something");
-        assertEquals("Something", advert.getCategory());
+        advert.setCategory(CategoryType.APPLIANCES);
+        assertEquals(CategoryType.APPLIANCES, advert.getCategory());
     }
 
     @Test
@@ -63,8 +65,8 @@ public class AdvertTest {
 
     @Test
     public void advertCanSetDeliveryOption(){
-        advert.setDeliveryOption("Something");
-        assertEquals("Something", advert.getDeliveryOption());
+        advert.setDeliveryOption(DeliveryType.FIRSTCLASSRECORDED);
+        assertEquals(DeliveryType.FIRSTCLASSRECORDED, advert.getDeliveryOption());
     }
 
 

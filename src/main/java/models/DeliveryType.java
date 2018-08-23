@@ -1,6 +1,6 @@
 package models;
 
-public enum DeliveryTypes {
+public enum DeliveryType {
 
     PICKUP("Pick-up", 0),
     FIRSTCLASSRECORDED("Signed For 1st Class", 10),
@@ -9,7 +9,7 @@ public enum DeliveryTypes {
     SECONDCLASS("2nd Class", 3);
 
 
-    DeliveryTypes(String prettyText, int cost){
+    DeliveryType(String prettyText, int cost){
         this.prettyText = prettyText;
         this.cost = cost;
     }
