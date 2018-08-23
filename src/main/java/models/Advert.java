@@ -1,6 +1,8 @@
 package models;
 
 import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(name = "adverts")
@@ -20,14 +22,14 @@ public class Advert {
     private String description;
     private CategoryType category;
     private int askingPrice;
-    private DeliveryType deliveryOption;
+    private Set<DeliveryType> deliveryOptions;
 
-    public Advert(String title, String description, CategoryType category, int askingPrice, DeliveryType deliveryOption) {
+    public Advert(String title, String description, CategoryType category, int askingPrice) {
         this.title = title;
         this.description = description;
-        this.category = category;
         this.askingPrice = askingPrice;
-        this.deliveryOption = deliveryOption;
+        this.category = category;
+        this.deliveryOptions = new HashSet<DeliveryType>();
     }
 
     public Advert() {
@@ -80,13 +82,21 @@ public class Advert {
         this.askingPrice = askingPrice;
     }
 
+    @ElementCollection(targetClass = DeliveryType.class)
+    @JoinTable(name = "advert_delivery_categories", joinColumns = @JoinColumn(name = "advert_id"))
+    @Column(name = "delivery_categories", nullable = false)
     @Enumerated(value = EnumType.STRING)
-    public DeliveryType getDeliveryOption() {
-        return deliveryOption;
+    public Set<DeliveryType> getDeliveryOptions() {
+        return deliveryOptions;
     }
 
-    public void setDeliveryOption(DeliveryType deliveryOption) {
-        this.deliveryOption = deliveryOption;
+    public void setDeliveryOptions(Set<DeliveryType> deliveryOptions) {
+        this.deliveryOptions = deliveryOptions;
     }
+
+    public void addDeliveryType(DeliveryType deliveryType){
+        deliveryOptions.add(deliveryType);
+    }
+
 
 }
