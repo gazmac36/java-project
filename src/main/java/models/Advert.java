@@ -23,10 +23,10 @@ public class Advert {
     private String title;
     private String description;
     private Category category;
-    private int askingPrice;
+    private double askingPrice;
     private Set<DeliveryOption> deliveryOptions;
 
-    public Advert(String title, String description, Category category, int askingPrice) {
+    public Advert(String title, String description, Category category, double askingPrice) {
         this.title = title;
         this.description = description;
         this.askingPrice = askingPrice;
@@ -77,11 +77,11 @@ public class Advert {
     }
 
     @Column(name = "asking_price")
-    public int getAskingPrice() {
+    public double getAskingPrice() {
         return askingPrice;
     }
 
-    public void setAskingPrice(int askingPrice) {
+    public void setAskingPrice(double askingPrice) {
         this.askingPrice = askingPrice;
     }
 

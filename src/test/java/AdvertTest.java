@@ -37,7 +37,7 @@ public class AdvertTest {
 
     @Test
     public void advertHasAskingPrice(){
-        assertEquals(10000, advert.getAskingPrice());
+        assertEquals(10000, advert.getAskingPrice(), 0);
     }
 
     @Test
