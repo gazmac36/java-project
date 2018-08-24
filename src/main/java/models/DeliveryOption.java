@@ -1,5 +1,7 @@
 package models;
 
+import org.hibernate.annotations.Cascade;
+
 import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
@@ -33,6 +35,19 @@ public class DeliveryOption {
         return id;
     }
 
+    @Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)
+    @ManyToMany
+    @JoinTable(name = "adverts_delivery_options",
+            joinColumns = {@JoinColumn(name = "delivery_option_id", nullable = false, updatable = false)},
+            inverseJoinColumns = {@JoinColumn(name = "advert_id", nullable = false, updatable = false)})
+    public Set<Advert> getAdverts() {
+        return adverts;
+    }
+
+    public void setAdverts(Set<Advert> adverts) {
+        this.adverts = adverts;
+    }
+
     public void setId(int id) {
         this.id = id;
     }
@@ -53,5 +68,9 @@ public class DeliveryOption {
 
     public void setPrice(int price) {
         this.price = price;
+    }
+
+    public void addAdvert(Advert advert){
+        this.adverts.add(advert);
     }
 }

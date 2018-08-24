@@ -39,7 +39,7 @@ public class AdvertTest {
 
     @Test
     public void advertHasDeliveryOption(){
-        advert.addDeliveryType(firstClassRecorded);
+        advert.addDeliveryOption(firstClassRecorded);
         assertEquals(1, advert.getDeliveryOptions().size());
     }
 
@@ -69,7 +69,7 @@ public class AdvertTest {
 
     @Test
     public void advertCanSetDeliveryOption(){
-        advert.addDeliveryType(firstClassRecorded);
+        advert.addDeliveryOption(firstClassRecorded);
         assertEquals(1, advert.getDeliveryOptions().size());
     }
 

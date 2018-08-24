@@ -26,12 +26,13 @@ public class Seeds {
         DBHelper.save(advert1);
         DBHelper.save(advert2);
 
-        advert1.addDeliveryType(pickup);
-        advert2.addDeliveryType(pickup);
+        advert1.addDeliveryOption(pickup);
+        advert2.addDeliveryOption(pickup);
 
         DBHelper.save(advert1);
         DBHelper.save(advert2);
 
+        DBAdvert.addDeliveryOptionToAdvert(advert1,firstClassRecorded);
 
 
     }

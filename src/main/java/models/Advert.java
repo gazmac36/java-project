@@ -1,5 +1,7 @@
 package models;
 
+import org.hibernate.annotations.Cascade;
+
 import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
@@ -82,10 +84,11 @@ public class Advert {
         this.askingPrice = askingPrice;
     }
 
-    @ElementCollection(targetClass = DeliveryOption.class)
-    @JoinTable(name = "advert_delivery_categories", joinColumns = @JoinColumn(name = "advert_id"))
-    @Column(name = "delivery_categories", nullable = false)
-    @Enumerated(value = EnumType.STRING)
+    @Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)
+    @ManyToMany
+    @JoinTable(name = "adverts_delivery_options",
+            joinColumns = {@JoinColumn(name = "advert_id", nullable = false, updatable = false)},
+            inverseJoinColumns = {@JoinColumn(name = "delivery_option_id", nullable = false, updatable = false)})
     public Set<DeliveryOption> getDeliveryOptions() {
         return deliveryOptions;
     }
@@ -94,8 +97,8 @@ public class Advert {
         this.deliveryOptions = deliveryOptions;
     }
 
-    public void addDeliveryType(DeliveryOption deliveryType){
-        deliveryOptions.add(deliveryType);
+    public void addDeliveryOption(DeliveryOption deliveryOption){
+        deliveryOptions.add(deliveryOption);
     }
 
 
