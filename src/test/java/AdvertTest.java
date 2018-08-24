@@ -1,5 +1,5 @@
 import models.Advert;
-import models.CategoryType;
+import models.Category;
 import models.DeliveryOption;
 import org.junit.Before;
 import org.junit.Test;
@@ -8,11 +8,14 @@ import static org.junit.Assert.assertEquals;
 
 public class AdvertTest {
     private Advert advert;
+    private Category category;
+    private Category category2;
     DeliveryOption firstClassRecorded;
 
     @Before
     public void before(){
-        advert = new Advert("Awesome Guitar, used by Hendrix", "Awesome guitar that Hendrix destroyed during his 1974 concert, restored to functionality", CategoryType.MUSICALISNTRUMENTSANDDJEQUIPMENT, 10000);
+        category = new Category("Musical Instruments & Dj Equipment");
+        advert = new Advert("Awesome Guitar, used by Hendrix", "Awesome guitar that Hendrix destroyed during his 1974 concert, restored to functionality", category, 10000);
         firstClassRecorded = new DeliveryOption("Signed for 1st Class", 10);
 
     }
@@ -29,7 +32,7 @@ public class AdvertTest {
 
     @Test
     public void advertHasCategory(){
-        assertEquals(CategoryType.MUSICALISNTRUMENTSANDDJEQUIPMENT, advert.getCategory());
+        assertEquals(category, advert.getCategory());
     }
 
     @Test
@@ -57,8 +60,9 @@ public class AdvertTest {
 
     @Test
     public void advertCanSetCategory(){
-        advert.setCategory(CategoryType.APPLIANCES);
-        assertEquals(CategoryType.APPLIANCES, advert.getCategory());
+        category2 = new Category("");
+        advert.setCategory(category2);
+        assertEquals(category2, advert.getCategory());
     }
 
     @Test

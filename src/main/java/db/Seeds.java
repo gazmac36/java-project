@@ -28,7 +28,30 @@ public class Seeds {
        Category otherGoods= new Category("Other Goods");
        Category stuffWanted= new Category("Stuff Wanted");
        Category swapShop= new Category("Swap Shop");
-        
+
+
+       DBHelper.save(audioStereo);
+       DBHelper.save(babyKidsStuff);
+       DBHelper.save(camerasCamcordersStudio);
+       DBHelper.save(christmasDecorations);
+       DBHelper.save(clothesFootwearAccessories);
+       DBHelper.save(computersSoftware);
+       DBHelper.save(diyToolsMaterials);
+       DBHelper.save(healthBeauty);
+       DBHelper.save(homeGarden);
+       DBHelper.save(houseClearance);
+       DBHelper.save(musicFilmsBooksGames);
+       DBHelper.save(musicalInstrumentsDjEquipment);
+       DBHelper.save(officeFurnitureEquipment);
+       DBHelper.save(phonesMobilePhonesTelecoms);
+       DBHelper.save(sportsLeisureTravel);
+       DBHelper.save(tickets);
+       DBHelper.save(tvDvdBlurayVideos);
+       DBHelper.save(freebies);
+       DBHelper.save(otherGoods);
+       DBHelper.save(stuffWanted);
+       DBHelper.save(swapShop);
+
         User user1 = new User("Bobby", "Bobberson", "37 Castle Terrace", "", "Edinburgh", "City of Edinburgh", "EH1 2EL", "bobobby", "07412312312", "bobby.bobberson@bobbysserver.co.uk");
         User user2 = new User("Bobby", "Bobberson", "37 Castle Terrace", "", "Edinburgh", "City of Edinburgh", "EH1 2EL", "bobobby", "07412312312", "bobby.bobberson@bobbysserver.co.uk");
         DBHelper.save(user1);
@@ -45,8 +68,8 @@ public class Seeds {
         DBHelper.save(firstClass);
         DBHelper.save(secondClass);
 
-        Advert advert1 = new Advert("Awesome Guitar, used by Hendrix", "Awesome guitar that Hendrix destroyed during his 1974 concert, restored to functionality", CategoryType.MUSICALISNTRUMENTSANDDJEQUIPMENT, 10000);
-        Advert advert2 = new Advert("Awesome Guitar, used by Hendrix", "Awesome guitar that Hendrix destroyed during his 1974 concert, restored to functionality", CategoryType.MUSICALISNTRUMENTSANDDJEQUIPMENT, 10000);
+        Advert advert1 = new Advert("Awesome Guitar, used by Hendrix", "Awesome guitar that Hendrix destroyed during his 1974 concert, restored to functionality", musicalInstrumentsDjEquipment, 10000);
+        Advert advert2 = new Advert("Awesome Guitar, used by Hendrix", "Awesome guitar that Hendrix destroyed during his 1974 concert, restored to functionality", musicalInstrumentsDjEquipment, 10000);
         DBHelper.save(advert1);
         DBHelper.save(advert2);
 

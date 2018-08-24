@@ -67,7 +67,7 @@ public class Advert {
     }
 
     @ManyToOne
-    @JoinColumn(name = "advert_id", nullable = false)
+    @JoinColumn(name = "category_id", nullable = false)
     public Category getCategory() {
         return category;
     }

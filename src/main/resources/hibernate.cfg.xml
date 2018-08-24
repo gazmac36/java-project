@@ -16,6 +16,7 @@
         <mapping class = "models.Advert"/>
         <mapping class = "models.User"/>
         <mapping class = "models.DeliveryOption"/>
+        <mapping class = "models.Category"/>
 
 
     </session-factory>
