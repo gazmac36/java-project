@@ -1,5 +1,7 @@
 package models;
 
+import org.hibernate.annotations.Cascade;
+
 import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
@@ -22,14 +24,14 @@ public class Advert {
     private String description;
     private Category category;
     private int askingPrice;
-    private Set<DeliveryType> deliveryOptions;
+    private Set<DeliveryOption> deliveryOptions;
 
     public Advert(String title, String description, Category category, int askingPrice) {
         this.title = title;
         this.description = description;
         this.askingPrice = askingPrice;
         this.category = category;
-        this.deliveryOptions = new HashSet<DeliveryType>();
+        this.deliveryOptions = new HashSet<DeliveryOption>();
     }
 
     public Advert() {
@@ -83,16 +85,24 @@ public class Advert {
         this.askingPrice = askingPrice;
     }
 
-    public Set<DeliveryType> getDeliveryOptions() {
+
+
+    @Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)
+    @ManyToMany
+    @JoinTable(name = "adverts_delivery_options",
+            joinColumns = {@JoinColumn(name = "advert_id", nullable = false, updatable = false)},
+            inverseJoinColumns = {@JoinColumn(name = "delivery_option_id", nullable = false, updatable = false)})
+    public Set<DeliveryOption> getDeliveryOptions() {
+
         return deliveryOptions;
     }
 
-    public void setDeliveryOptions(Set<DeliveryType> deliveryOptions) {
+    public void setDeliveryOptions(Set<DeliveryOption> deliveryOptions) {
         this.deliveryOptions = deliveryOptions;
     }
 
-    public void addDeliveryType(DeliveryType deliveryType){
-        deliveryOptions.add(deliveryType);
+    public void addDeliveryOption(DeliveryOption deliveryOption){
+        deliveryOptions.add(deliveryOption);
     }
 
 

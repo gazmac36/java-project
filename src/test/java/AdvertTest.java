@@ -1,6 +1,6 @@
 import models.Advert;
 import models.CategoryType;
-import models.DeliveryType;
+import models.DeliveryOption;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -8,10 +8,13 @@ import static org.junit.Assert.assertEquals;
 
 public class AdvertTest {
     private Advert advert;
+    DeliveryOption firstClassRecorded;
 
     @Before
     public void before(){
         advert = new Advert("Awesome Guitar, used by Hendrix", "Awesome guitar that Hendrix destroyed during his 1974 concert, restored to functionality", CategoryType.MUSICALISNTRUMENTSANDDJEQUIPMENT, 10000);
+        firstClassRecorded = new DeliveryOption("Signed for 1st Class", 10);
+
     }
 
     @Test
@@ -36,7 +39,7 @@ public class AdvertTest {
 
     @Test
     public void advertHasDeliveryOption(){
-        advert.addDeliveryType(DeliveryType.FIRSTCLASSRECORDED);
+        advert.addDeliveryOption(firstClassRecorded);
         assertEquals(1, advert.getDeliveryOptions().size());
     }
 
@@ -66,7 +69,7 @@ public class AdvertTest {
 
     @Test
     public void advertCanSetDeliveryOption(){
-        advert.addDeliveryType(DeliveryType.FIRSTCLASSRECORDED);
+        advert.addDeliveryOption(firstClassRecorded);
         assertEquals(1, advert.getDeliveryOptions().size());
     }
 
