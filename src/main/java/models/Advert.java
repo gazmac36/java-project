@@ -20,11 +20,11 @@ public class Advert {
     private int id;
     private String title;
     private String description;
-    private CategoryType category;
+    private Category category;
     private int askingPrice;
     private Set<DeliveryType> deliveryOptions;
 
-    public Advert(String title, String description, CategoryType category, int askingPrice) {
+    public Advert(String title, String description, Category category, int askingPrice) {
         this.title = title;
         this.description = description;
         this.askingPrice = askingPrice;
@@ -64,12 +64,13 @@ public class Advert {
         this.description = description;
     }
 
-    @Enumerated(value = EnumType.STRING)
-    public CategoryType getCategory() {
+    @ManyToOne
+    @JoinColumn(name = "advert_id", nullable = false)
+    public Category getCategory() {
         return category;
     }
 
-    public void setCategory(CategoryType category) {
+    public void setCategory(Category category) {
         this.category = category;
     }
 
@@ -82,10 +83,6 @@ public class Advert {
         this.askingPrice = askingPrice;
     }
 
-    @ElementCollection(targetClass = DeliveryType.class)
-    @JoinTable(name = "advert_delivery_categories", joinColumns = @JoinColumn(name = "advert_id"))
-    @Column(name = "delivery_categories", nullable = false)
-    @Enumerated(value = EnumType.STRING)
     public Set<DeliveryType> getDeliveryOptions() {
         return deliveryOptions;
     }
