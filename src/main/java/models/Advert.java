@@ -22,14 +22,14 @@ public class Advert {
     private String description;
     private CategoryType category;
     private int askingPrice;
-    private Set<DeliveryType> deliveryOptions;
+    private Set<DeliveryOption> deliveryOptions;
 
     public Advert(String title, String description, CategoryType category, int askingPrice) {
         this.title = title;
         this.description = description;
         this.askingPrice = askingPrice;
         this.category = category;
-        this.deliveryOptions = new HashSet<DeliveryType>();
+        this.deliveryOptions = new HashSet<DeliveryOption>();
     }
 
     public Advert() {
@@ -82,19 +82,19 @@ public class Advert {
         this.askingPrice = askingPrice;
     }
 
-    @ElementCollection(targetClass = DeliveryType.class)
+    @ElementCollection(targetClass = DeliveryOption.class)
     @JoinTable(name = "advert_delivery_categories", joinColumns = @JoinColumn(name = "advert_id"))
     @Column(name = "delivery_categories", nullable = false)
     @Enumerated(value = EnumType.STRING)
-    public Set<DeliveryType> getDeliveryOptions() {
+    public Set<DeliveryOption> getDeliveryOptions() {
         return deliveryOptions;
     }
 
-    public void setDeliveryOptions(Set<DeliveryType> deliveryOptions) {
+    public void setDeliveryOptions(Set<DeliveryOption> deliveryOptions) {
         this.deliveryOptions = deliveryOptions;
     }
 
-    public void addDeliveryType(DeliveryType deliveryType){
+    public void addDeliveryType(DeliveryOption deliveryType){
         deliveryOptions.add(deliveryType);
     }
 
