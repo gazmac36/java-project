@@ -2,6 +2,7 @@ package controllers;
 
 import db.DBHelper;
 import models.Category;
+import models.User;
 import spark.ModelAndView;
 import spark.template.velocity.VelocityTemplateEngine;
 
@@ -14,9 +15,13 @@ import static spark.Spark.post;
 
 public class CategoryController {
 
+    public CategoryController() {
+        setupEndpoints();
+    }
+
     private void setupEndpoints() {
 
-        get("/category/:id/edit", (req, res) -> {
+        get("/categories/:id/edit", (req, res) -> {
             String strId = req.params(":id");
             Integer intId = Integer.parseInt(strId);
             Category category = DBHelper.find(intId, Category.class);
@@ -38,7 +43,7 @@ public class CategoryController {
 
         get ("/categories/new", (req, res) -> {
             Map<String, Object> model = new HashMap<>();
-            model.put("template", "templates/categories/create.vtl");
+            model.put("template", "templates/categories/new.vtl");
             return new ModelAndView(model, "templates/layout.vtl");
         }, new VelocityTemplateEngine());
 
@@ -53,14 +58,18 @@ public class CategoryController {
             return new ModelAndView(model, "templates/layout.vtl");
         }, new VelocityTemplateEngine());
 
-        get ("/categories/new", (req, res) -> {
+        get ("/categories/:id/delete", (req, res) -> {
             Map<String, Object> model = new HashMap<>();
-            model.put("template", "templates/categories/create.vtl");
+            String strId = req.params(":id");
+            Integer intId = Integer.parseInt(strId);
+            Category category = DBHelper.find(intId, Category.class);
+            model.put("template", "templates/categories/confirmDelete.vtl");
+            model.put("category", category);
             return new ModelAndView(model, "templates/layout.vtl");
         }, new VelocityTemplateEngine());
 
         post ("/categories", (req, res) -> {
-            String categoryName = req.queryParams("name");
+            String categoryName = req.queryParams("categoryName");
             Category category = new Category(categoryName);
             DBHelper.save(category);
             res.redirect("/categories");
@@ -80,7 +89,7 @@ public class CategoryController {
             String strId = req.params(":id");
             Integer intId = Integer.parseInt(strId);
             Category category = DBHelper.find(intId, Category.class);
-            String categoryName = req.queryParams("name");
+            String categoryName = req.queryParams("categoryName");
             category.setCategoryName(categoryName);
             DBHelper.save(category);
             res.redirect("/categories");

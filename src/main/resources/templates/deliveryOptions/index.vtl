@@ -1,5 +1,7 @@
 <a href="/delivery-options/new">Create new delivery option</a>
-
+<form class="" action="/" method="get">
+    <input type="submit" name="submit" value="HOME">
+</form>
 #foreach ($option in $deliveryOptions)
 <h4>$option.getTitle()</h4>
 <a href="delivery-options/$option.getId()">View</a>

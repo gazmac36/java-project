@@ -1,0 +1,20 @@
+<h1>All Categories</h1>
+<form class="" action="/" method="get">
+    <input type="submit" name="submit" value="HOME">
+</form>
+
+<table>
+    <tr>
+        <th>Category Name</th>
+        <th></th>
+    </tr>
+#foreach ($category in $categories)
+<tr>
+    <td>$category.getCategoryName()</td>
+    <td><a href="/categories/$category.getId()">VIEW</a></td>
+</tr>
+#end
+</table>
+<form class="" action="/categories/new" method="get">
+    <input type="submit" name="submit" value="NEW">
+</form>

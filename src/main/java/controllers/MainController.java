@@ -17,8 +17,9 @@ public class MainController {
 
         staticFileLocation("/public");
 
-        DeliveryOptionController deliveryOptionController = new DeliveryOptionController();
         AdvertController advertController = new AdvertController();
+        CategoryController categoryController = new CategoryController();
+        DeliveryOptionController deliveryOptionController = new DeliveryOptionController();
         UserController userController = new UserController();
 
         get("/", (req, res) -> {

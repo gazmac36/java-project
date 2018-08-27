@@ -57,12 +57,6 @@ public class UserController {
             return new ModelAndView(model, "templates/layout.vtl");
         }, new VelocityTemplateEngine());
 
-        get ("/users/new", (req, res) -> {
-            Map<String, Object> model = new HashMap<>();
-            model.put("template", "templates/users/create.vtl");
-            return new ModelAndView(model, "templates/layout.vtl");
-        }, new VelocityTemplateEngine());
-
         get ("/users/:id/delete", (req, res) -> {
             Map<String, Object> model = new HashMap<>();
             String strId = req.params(":id");
