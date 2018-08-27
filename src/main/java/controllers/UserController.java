@@ -42,7 +42,7 @@ public class UserController {
 
         get ("/users/new", (req, res) -> {
             Map<String, Object> model = new HashMap<>();
-            model.put("template", "templates/users/create.vtl");
+            model.put("template", "templates/users/new.vtl");
             return new ModelAndView(model, "templates/layout.vtl");
         }, new VelocityTemplateEngine());
 
@@ -60,6 +60,16 @@ public class UserController {
         get ("/users/new", (req, res) -> {
             Map<String, Object> model = new HashMap<>();
             model.put("template", "templates/users/create.vtl");
+            return new ModelAndView(model, "templates/layout.vtl");
+        }, new VelocityTemplateEngine());
+
+        get ("/users/:id/delete", (req, res) -> {
+            Map<String, Object> model = new HashMap<>();
+            String strId = req.params(":id");
+            Integer intId = Integer.parseInt(strId);
+            User user = DBHelper.find(intId, User.class);
+            model.put("template", "templates/users/confirmDelete.vtl");
+            model.put("user", user);
             return new ModelAndView(model, "templates/layout.vtl");
         }, new VelocityTemplateEngine());
 

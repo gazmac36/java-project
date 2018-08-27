@@ -1,0 +1,45 @@
+<table>
+    <tr>
+        <th>Name</th>
+        <td>$user.getFirstName() $user.getLastName()</td>
+    </tr>
+    <tr>
+        <th>Address</th>
+        <td>$user.getAddressLine1()</td>
+    <tr>
+        <th></th>
+        <td>$user.getAddressLine2()</td>
+    </tr>
+    <tr>
+        <th></th>
+        <td>$user.getAddressCity()</td>
+    </tr>
+    <tr>
+        <th></th>
+        <td>$user.getAddressCounty()</td>
+    <tr>
+        <th></th>
+        <td>$user.getAddressPostcode()</td>
+    </tr>
+    <tr>
+        <th>Username</th>
+        <td>$user.getUsername()</td>
+    </tr>
+    <tr>
+        <th>Phone</th>
+        <td>$user.getContactPhone()</td>
+    </tr>
+    <tr>
+        <th>Email</th>
+        <td>$user.getContactEmail()</td>
+    </tr>
+</table>
+<form class="" action="/users/$user.getId()/edit" method="get">
+    <input type="submit" name="submit" value="EDIT">
+</form>
+<form class="" action="/users/$user.getId()/delete" method="get">
+    <input type="submit" name="submit" value="DELETE">
+</form>
+<form class="" action="/users" method="get">
+    <input type="submit" name="submit" value="CANCEL">
+</form>

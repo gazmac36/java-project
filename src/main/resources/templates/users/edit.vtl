@@ -1,0 +1,40 @@
+<h1>Edit $user.getFirstName() $user.getLastName()</h1>
+
+<form class="" action="/users/$user.getId()" method="post">
+
+    <label for="firstName"></label>
+    <input id="firstName" type="text" name="firstName" value="$user.getFirstName()" required>
+    <br>
+    <label for="lastName"></label>
+    <input id="lastName" type="text" name="lastName" value="$user.getLastName()" required>
+    <br>
+    <label for="addressLine1"></label>
+    <input id="addressLine1" type="text" name="addressLine1" value="$user.getAddressLine1()" required>
+    <br>
+    <label for="addressLine2"></label>
+    <input id="addressLine2" type="text" name="addressLine2" value="$user.getAddressLine2()">
+    <br>
+    <label for="addressCity"></label>
+    <input id="addressCity" type="text" name="addressCity" value="$user.getAddressCity()" required>
+    <br>
+    <label for="addressCounty"></label>
+    <input id="addressCounty" type="text" name="addressCounty" value="$user.getAddressCounty()" required>
+    <br>
+    <label for="addressPostcode"></label>
+    <input id="addressPostcode" type="text" name="addressPostcode" value="$user.getAddressPostcode()" required>
+    <br>
+    <label for="username"></label>
+    <input id="username" type="text" name="username" value="$user.getUsername()" required>
+    <br>
+    <label for="contactPhone"></label>
+    <input id="contactPhone" type="text" name="contactPhone" value="$user.getContactPhone()" required>
+    <br>
+    <label for="contactEmail"></label>
+    <input id="contactEmail" type="text" name="contactEmail" value="$user.getContactEmail()" required>
+    <br>
+
+    <input type="submit" name="submit" value="CONFIRM">
+</form>
+<form class="" action="/users/$user.getId()" method="get">
+    <input type="submit" name="submit" value="CANCEL">
+</form>

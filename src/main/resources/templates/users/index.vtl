@@ -1,14 +1,33 @@
-#foreach(user in users)
+<h1>All Users</h1>
 
-<h3>$user.getfirstName()</h3>
-<h3>$user.getLastName()</h3>
-<h3>$user.getAddressLine1()</h3>
-<h3>$user.getAddressLine2()</h3>
-<h3>$user.getAddressCity()</h3>
-<h3>$user.getAddressCounty()</h3>
-<h3>$user.getAddressPostcode()</h3>
-<h3>$user.getUsermname()</h3>
-<h3>$user.getContactPhone()</h3>
-<h3>$user.getContactEmail()</h3>
-
-# end
+<table>
+    <tr>
+        <th>Name</th>
+        <th>Address Line 1</th>
+        <th>Address Line 2</th>
+        <th>Address City</th>
+        <th>Address County</th>
+        <th>Address Postcode</th>
+        <th>Username</th>
+        <th>Contact Phone</th>
+        <th>Contact Email</th>
+        <th></th>
+    </tr>
+    #foreach($user in $users)
+    <tr>
+        <td>$user.getFirstName() $user.getLastName()</td>
+        <td>$user.getAddressLine1()</td>
+        <td>$user.getAddressLine2()</td>
+        <td>$user.getAddressCity()</td>
+        <td>$user.getAddressCounty()</td>
+        <td>$user.getAddressPostcode()</td>
+        <td>$user.getUsername()</td>
+        <td>$user.getContactPhone()</td>
+        <td>$user.getContactEmail()</td>
+        <td><a href="/users/$user.getId()">VIEW</a>
+    </tr>
+    #end
+</table>
+<form class="" action="/users/new" method="get">
+    <input type="submit" name="submit" value="NEW">
+</form>
