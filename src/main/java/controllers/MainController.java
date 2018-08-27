@@ -8,4 +8,9 @@ public class MainController {
     //edit
     //update
     //destroy(could be archive)
+
+    public static void main(String[] args) {
+
+        AdvertController advertController = new AdvertController();
+    }
 }

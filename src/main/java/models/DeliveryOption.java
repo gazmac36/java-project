@@ -28,6 +28,9 @@ public class DeliveryOption {
         this.adverts = new HashSet<Advert>();
     }
 
+    public DeliveryOption() {
+    }
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")

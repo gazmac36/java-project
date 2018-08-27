@@ -15,6 +15,9 @@ public class Category {
         this.category = category;
     }
 
+    public Category() {
+    }
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
