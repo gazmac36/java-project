@@ -54,7 +54,13 @@ public class AdvertController {
             return null;
         });
         //show
-        post("/adverts/:id")
+//        post("/adverts/:id", (req, res)->{
+//            Map<String, Object> model = new HashMap<>();
+//            int id = Integer.parseInt(req.queryParams("id"));
+//            Advert advert = DBHelper.find(id, Advert.class);
+//
+//
+//        });
         //edit
         //update
         //destroy(could be archive)
