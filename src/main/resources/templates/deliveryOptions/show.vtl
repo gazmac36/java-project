@@ -1,0 +1,13 @@
+<div>
+    <h1>Delivery option $deliveryOption.getTitle()</h1>
+    <h2>Title:</h2>
+    <p>$deliveryOption.getTitle()</p>
+    <h2>Price:</h2>
+    <p>$deliveryOption.getPrice()</p>
+</div>
+
+<a href="/delivery-options">Go back</a>
+<a href="/delivery-options/$deliveryOption.getId()/edit">Edit</a>
+<form action="/delivery-options/$deliveryOption.getId()/delete" method="post">
+    <button type="submit">Delete</button>
+</form>

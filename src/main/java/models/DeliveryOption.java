@@ -18,11 +18,11 @@ public class DeliveryOption {
 
     private int id;
     private String title;
-    private int price;
+    private double price;
     private Set<Advert> adverts;
 
 
-    public DeliveryOption(String title, int price) {
+    public DeliveryOption(String title, double price) {
         this.title = title;
         this.price = price;
         this.adverts = new HashSet<Advert>();
@@ -65,11 +65,11 @@ public class DeliveryOption {
     }
 
     @Column(name = "price")
-    public int getPrice() {
+    public double getPrice() {
         return price;
     }
 
-    public void setPrice(int price) {
+    public void setPrice(double price) {
         this.price = price;
     }
 

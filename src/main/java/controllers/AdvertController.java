@@ -73,16 +73,6 @@ public class AdvertController {
             model.put("template", "templates/adverts/edit.vtl");
             return new ModelAndView(model, "templates/layout.vtl");
         }, new VelocityTemplateEngine());
-
-        //destroy(could be archive)
-        post("/adverts/:id/delete", (req, res) ->{
-            Integer id = Integer.parseInt(req.params(":id"));
-            Advert advert = DBHelper.find(id, Advert.class);
-            DBHelper.delete(advert);
-
-            res.redirect("/adverts");
-            return null;
-        });
         //update
         post("/adverts/:id", (req, res) ->{
             Integer id = Integer.parseInt(req.params(":id"));
@@ -104,9 +94,15 @@ public class AdvertController {
             res.redirect("/adverts");
             return null;
         });
+        //destroy(could be archive)
+        post("/adverts/:id/delete", (req, res) ->{
+            Integer id = Integer.parseInt(req.params(":id"));
+            Advert advert = DBHelper.find(id, Advert.class);
+            DBHelper.delete(advert);
 
-
-
+            res.redirect("/adverts");
+            return null;
+        });
 
         //show
         get("/adverts/:id", (req, res) -> {
