@@ -44,7 +44,7 @@ public class UserTest {
 
     @Test
     public void userHasPostCode(){
-        assertEquals("EH1 2EL", user.getPostCode());
+        assertEquals("EH1 2EL", user.getAddressPostcode());
     }
 
     @Test
@@ -105,8 +105,8 @@ public class UserTest {
 
     @Test
     public void userCanSetPostCode(){
-        user.setPostCode("Something");
-        assertEquals("Something", user.getPostCode());
+        user.setAddressPostcode("Something");
+        assertEquals("Something", user.getAddressPostcode());
     }
 
 
