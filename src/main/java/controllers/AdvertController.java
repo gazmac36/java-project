@@ -54,6 +54,7 @@ public class AdvertController {
             return null;
         });
         //show
+        post("/adverts/:id")
         //edit
         //update
         //destroy(could be archive)
