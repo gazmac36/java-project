@@ -74,7 +74,6 @@ public class DBHelper {
         }
     }
 
-
     public static void delete(Object object) {
         session = HibernateUtil.getSessionFactory().openSession();
         try {

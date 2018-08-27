@@ -8,11 +8,11 @@ import java.util.Set;
 public class Category {
 
     private int id;
-    private String category;
+    private String categoryName;
     private Set<Advert> adverts;
 
     public Category(String category){
-        this.category = category;
+        this.categoryName = category;
     }
 
     public Category() {
@@ -29,12 +29,12 @@ public class Category {
         this.id = id;
     }
 
-    public String getCategory() {
-        return category;
+    public String getCategoryName() {
+        return categoryName;
     }
 
-    public void setCategory(String category) {
-        this.category = category;
+    public void setCategoryName(String category) {
+        this.categoryName = category;
     }
 
     @OneToMany(mappedBy = "category", fetch = FetchType.EAGER)

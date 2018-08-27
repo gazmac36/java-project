@@ -5,19 +5,6 @@ import javax.persistence.*;
 @Entity
 @Table(name = "users")
 public class User {
-    /*
-    +firstName String
-    +lastName String
-    +addressLine1 String
-    +addressLine2 String
-    +addressCity String
-    +addressCounty String
-    +addressPostCode String
-    +username String
-    +contactPhone String
-    +contactEmail String
-    +id int
-     */
 
     private int id;
     private String firstName;
@@ -26,19 +13,19 @@ public class User {
     private String addressLine2;
     private String addressCity;
     private String addressCounty;
-    private String postCode;
+    private String addressPostcode;
     private String username;
     private String contactPhone;
     private String contactEmail;
 
-    public User(String firstName, String lastName, String addressLine1, String addressLine2, String addressCity, String addressCounty, String postCode, String username, String contactPhone, String contactEmail) {
+    public User(String firstName, String lastName, String addressLine1, String addressLine2, String addressCity, String addressCounty, String addressPostode, String username, String contactPhone, String contactEmail) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.addressLine1 = addressLine1;
         this.addressLine2 = addressLine2;
         this.addressCity = addressCity;
         this.addressCounty = addressCounty;
-        this.postCode = postCode;
+        this.addressPostcode = addressPostcode;
         this.username = username;
         this.contactPhone = contactPhone;
         this.contactEmail = contactEmail;
@@ -113,12 +100,12 @@ public class User {
     }
 
     @Column(name = "post_code")
-    public String getPostCode() {
-        return postCode;
+    public String getAddressPostcode() {
+        return addressPostcode;
     }
 
-    public void setPostCode(String postCode) {
-        this.postCode = postCode;
+    public void setAddressPostcode(String postCode) {
+        this.addressPostcode = postCode;
     }
 
     @Column(name = "username")
