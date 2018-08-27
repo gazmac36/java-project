@@ -5,6 +5,7 @@ import db.DBHelper;
 import models.Advert;
 import models.Category;
 import models.DeliveryOption;
+import org.omg.PortableInterceptor.ORBInitInfoPackage.DuplicateNameHelper;
 import spark.ModelAndView;
 import spark.template.velocity.VelocityTemplateEngine;
 
@@ -25,6 +26,7 @@ public class AdvertController {
         get("/adverts", (req, res) -> {
             Map<String, Object> model = new HashMap<>();
             List<Advert> adverts = DBHelper.getAll(Advert.class);
+            model.put("adverts", adverts);
             model.put("template", "templates/adverts/index.vtl");
             return new ModelAndView(model, "templates/layout.vtl");
         }, new VelocityTemplateEngine());
@@ -71,8 +73,16 @@ public class AdvertController {
             model.put("template", "templates/adverts/edit.vtl");
             return new ModelAndView(model, "templates/layout.vtl");
         }, new VelocityTemplateEngine());
-        //destroy(could be archive)
 
+        //destroy(could be archive)
+        post("/adverts/:id/delete", (req, res) ->{
+            Integer id = Integer.parseInt(req.params(":id"));
+            Advert advert = DBHelper.find(id, Advert.class);
+            DBHelper.delete(advert);
+
+            res.redirect("/adverts");
+            return null;
+        });
         //update
         post("/adverts/:id", (req, res) ->{
             Integer id = Integer.parseInt(req.params(":id"));
