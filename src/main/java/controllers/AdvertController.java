@@ -1,5 +1,6 @@
 package controllers;
 
+import db.DBAdvert;
 import db.DBHelper;
 import models.Advert;
 import models.Category;
@@ -54,13 +55,18 @@ public class AdvertController {
             return null;
         });
         //show
-//        post("/adverts/:id", (req, res)->{
-//            Map<String, Object> model = new HashMap<>();
-//            int id = Integer.parseInt(req.queryParams("id"));
-//            Advert advert = DBHelper.find(id, Advert.class);
-//
-//
-//        });
+        get("/adverts/:id", (req, res)->{
+            Map<String, Object> model = new HashMap<>();
+            Integer id = Integer.parseInt(req.params(":id"));
+            Advert advert = DBHelper.find(id, Advert.class);
+
+            Set<DeliveryOption> deliveryOptions = DBAdvert.findDeliveryOptionsByAdvert(advert);
+
+            model.put("deliveryOptions", deliveryOptions);
+            model.put("advert", advert);
+            model.put("template", "templates/adverts/show.vtl");
+            return new ModelAndView(model, "templates/layout.vtl");
+        }, new VelocityTemplateEngine());
         //edit
         //update
         //destroy(could be archive)
