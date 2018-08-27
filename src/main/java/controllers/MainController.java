@@ -17,7 +17,7 @@ public class MainController {
 
         staticFileLocation("/public");
 
-
+        DeliveryOptionController deliveryOptionController = new DeliveryOptionController();
         AdvertController advertController = new AdvertController();
         UserController userController = new UserController();
 
@@ -26,6 +26,7 @@ public class MainController {
             model.put("template","templates/main.vtl");
             return new ModelAndView(model, "templates/layout.vtl");
         }, new VelocityTemplateEngine());
+
     }
 
 }
