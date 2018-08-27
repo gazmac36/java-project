@@ -11,8 +11,8 @@ public class Category {
     private String categoryName;
     private Set<Advert> adverts;
 
-    public Category(String category){
-        this.categoryName = category;
+    public Category(String categoryName){
+        this.categoryName = categoryName;
     }
 
     public Category() {
@@ -29,7 +29,7 @@ public class Category {
         this.id = id;
     }
 
-
+    @Column(name = "category_name")
     public String getCategoryName() {
         return categoryName;
     }

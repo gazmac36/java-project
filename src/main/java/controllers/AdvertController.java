@@ -53,11 +53,24 @@ public class AdvertController {
             res.redirect("/adverts");
             return null;
         });
+
 //        //show
 //        post("/adverts/:id")
 //        //edit
 //        //update
 //        //destroy(could be archive)
+
+        //show
+//        post("/adverts/:id", (req, res)->{
+//            Map<String, Object> model = new HashMap<>();
+//            int id = Integer.parseInt(req.queryParams("id"));
+//            Advert advert = DBHelper.find(id, Advert.class);
+//
+//
+//        });
+        //edit
+        //update
+        //destroy(could be archive)
     }
 
     private List<Integer> getOptionsFromAllParams(Set<String> params){
