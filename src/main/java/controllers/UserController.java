@@ -14,6 +14,10 @@ import static spark.Spark.post;
 
 public class UserController {
 
+    public UserController() {
+        setupEndpoints();
+    }
+
     private void setupEndpoints() {
 
         get("/users/:id/edit", (req, res) -> {

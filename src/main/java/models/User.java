@@ -18,7 +18,7 @@ public class User {
     private String contactPhone;
     private String contactEmail;
 
-    public User(String firstName, String lastName, String addressLine1, String addressLine2, String addressCity, String addressCounty, String addressPostode, String username, String contactPhone, String contactEmail) {
+    public User(String firstName, String lastName, String addressLine1, String addressLine2, String addressCity, String addressCounty, String addressPostcode, String username, String contactPhone, String contactEmail) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.addressLine1 = addressLine1;
