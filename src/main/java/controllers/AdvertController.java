@@ -53,11 +53,11 @@ public class AdvertController {
             res.redirect("/adverts");
             return null;
         });
-        //show
-        post("/adverts/:id")
-        //edit
-        //update
-        //destroy(could be archive)
+//        //show
+//        post("/adverts/:id")
+//        //edit
+//        //update
+//        //destroy(could be archive)
     }
 
     private List<Integer> getOptionsFromAllParams(Set<String> params){
