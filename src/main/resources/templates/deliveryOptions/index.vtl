@@ -1,0 +1,6 @@
+<a href="/delivery-options/new">Create new delivery option</a>
+
+#foreach ($option in $deliveryOptions)
+<h4>$option.getTitle()</h4>
+<a href="delivery-options/$option.getId()">View</a>
+#end
