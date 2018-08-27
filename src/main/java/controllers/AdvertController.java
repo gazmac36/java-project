@@ -53,7 +53,7 @@ public class AdvertController {
             Advert advert = new Advert(title, description, category, askingPrice);
             advert.setDeliveryOptions(deliveryOptions);
             DBHelper.save(advert);
-            res.redirect("/adverts");
+            res.redirect("/adverts/"+advert.getId());
             return null;
         });
         //edit
@@ -91,7 +91,7 @@ public class AdvertController {
             advert.setCategory(category);
             advert.setDeliveryOptions(deliveryOptions);
             DBHelper.save(advert);
-            res.redirect("/adverts");
+            res.redirect("/adverts/"+advert.getId());
             return null;
         });
         //destroy(could be archive)
