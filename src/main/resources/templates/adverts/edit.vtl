@@ -1,0 +1,40 @@
+<p class="/adverts">Edit advert</p>
+
+<form action="/adverts/$advert.getId()" method="post">
+    <label for="title">Advert title:</label>
+    <input class="inputbox" type="text" name="title" required="true" id="title" value="$advert.getTitle()">
+
+    <label for="description">Description</label>
+    <input type="text" class="inputbox" name="description" required="true" id="description" value="$advert.getDescription()">
+
+    <label for="category">Category:</label>
+    <select id="category" name="category">
+        #foreach( $category in $categories )
+        <option value="$category.getId()" $category.getCategoryName()
+            #if ($category.getId() == $advert.getCategory().getId())
+            selected="selected"
+            #end>
+            $category.getCategoryName()
+        </option>
+        #end
+    </select>
+
+    <label for="price">Asking price:</label>
+    <input type="number" class="inputbox" name="askingPrice" required="true" id="price" value="$advert.getAskingPrice()">
+
+    #foreach( $option in $deliveryOptions)
+
+        <input type="checkbox" value="$option.getId()_option" id="deliveryOption" name="$option.getId()_option"
+        #foreach ($advertOption in $advertDeliveryOptions)
+        #if ($option.getId() == $advertOption.getId())
+           checked
+        #end
+        #end>
+
+        <label for="deliveryOption">$option.getTitle()</label>
+    #end
+
+
+    <button type="submit">Submit form</button>
+</form>
+
