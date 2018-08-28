@@ -16,6 +16,9 @@
         #end
     </ul>
 </div>
+#if ($advert.isArchived())
+This advert has been taken down
+#end
 
 <a href="/adverts">Go back</a>
 <a href="/adverts/$advert.getId()/edit">Edit</a>

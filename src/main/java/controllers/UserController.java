@@ -53,7 +53,6 @@ public class UserController {
             Map<String, Object> model = new HashMap<>();
             model.put("user", user);
             model.put("template", "templates/users/show.vtl");
-
             return new ModelAndView(model, "templates/layout.vtl");
         }, new VelocityTemplateEngine());
 

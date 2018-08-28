@@ -37,6 +37,9 @@
         <td>$user.getContactEmail()</td>
     </tr>
 </table>
+#if ($user.isArchived())
+<p>This user account is inactive.</p>
+#end
 <form class="" action="/users/$user.getId()/edit" method="get">
     <input type="submit" name="submit" value="EDIT">
 </form>

@@ -10,9 +10,11 @@ public class Category {
     private int id;
     private String categoryName;
     private Set<Advert> adverts;
+    private boolean archived;
 
     public Category(String categoryName){
         this.categoryName = categoryName;
+        this.archived = false;
     }
 
     public Category() {
@@ -45,5 +47,14 @@ public class Category {
 
     public void setAdverts(Set<Advert> adverts) {
         this.adverts = adverts;
+    }
+
+    @Column(name = "archived")
+    public boolean isArchived() {
+        return archived;
+    }
+
+    public void setArchived(boolean archived) {
+        this.archived = archived;
     }
 }

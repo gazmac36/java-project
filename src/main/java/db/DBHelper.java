@@ -40,6 +40,20 @@ public class DBHelper {
         return results;
     }
 
+    public static <T> List<T> getAllNotArchived(Class classType){
+        session = HibernateUtil.getSessionFactory().openSession();
+        Criteria cr = session.createCriteria(classType);
+        cr.add(Restrictions.eq("archived", false));
+        return getList(cr);
+    }
+
+    public static <T> List<T> getAll(Class classType) {
+        session = HibernateUtil.getSessionFactory().openSession();
+        Criteria cr = session.createCriteria(classType);
+        cr.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY);
+        return getList(cr);
+    }
+
     public static <T> T getUnique(Criteria criteria) {
         T result = null;
         try {
@@ -86,13 +100,6 @@ public class DBHelper {
         } finally {
             session.close();
         }
-    }
-
-    public static <T> List<T> getAll(Class classType) {
-        session = HibernateUtil.getSessionFactory().openSession();
-        Criteria cr = session.createCriteria(classType);
-        cr.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY);
-        return getList(cr);
     }
 
     public static <T> T find(int id, Class classType) {

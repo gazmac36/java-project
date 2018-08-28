@@ -29,7 +29,8 @@ public class Seeds {
         Category otherGoods = new Category("Other Goods");
         Category stuffWanted = new Category("Stuff Wanted");
         Category swapShop = new Category("Swap Shop");
-
+        Category toys = new Category("Toys");
+        toys.setArchived(true);
 
         DBHelper.save(audioStereo);
         DBHelper.save(babyKidsStuff);
@@ -52,9 +53,11 @@ public class Seeds {
         DBHelper.save(otherGoods);
         DBHelper.save(stuffWanted);
         DBHelper.save(swapShop);
+        DBHelper.save(toys);
 
         User user1 = new User("Bobby", "Bobberson", "37 Castle Terrace", "", "Edinburgh", "City of Edinburgh", "EH1 2EL", "bobobby", "07412312312", "bobby.bobberson@bobbysserver.co.uk");
         User user2 = new User("Bobby", "Bobberson", "37 Castle Terrace", "", "Edinburgh", "City of Edinburgh", "EH1 2EL", "bobobby", "07412312312", "bobby.bobberson@bobbysserver.co.uk");
+        user2.setArchived(true);
         DBHelper.save(user1);
         DBHelper.save(user2);
 
@@ -63,19 +66,25 @@ public class Seeds {
         DeliveryOption secondClassRecorded = new DeliveryOption("Signed for 2nd Class", 7);
         DeliveryOption firstClass = new DeliveryOption("1st Class", 5);
         DeliveryOption secondClass = new DeliveryOption("2nd Class", 3);
+        DeliveryOption carrierPidgeon = new DeliveryOption("Carrier pidgeon", 2);
+        carrierPidgeon.setArchived(true);
         DBHelper.save(pickup);
         DBHelper.save(firstClassRecorded);
         DBHelper.save(secondClassRecorded);
         DBHelper.save(firstClass);
         DBHelper.save(secondClass);
+        DBHelper.save(carrierPidgeon);
 
         Advert advert1 = new Advert("Awesome Guitar, used by Hendrix", "Awesome guitar that Hendrix destroyed during his 1974 concert, restored to functionality", musicalInstrumentsDjEquipment, 10000);
         Advert advert2 = new Advert("Awesome Guitar, used by Hendrix", "Awesome guitar that Hendrix destroyed during his 1974 concert, restored to functionality", musicalInstrumentsDjEquipment, 10000);
         DBHelper.save(advert1);
+        advert2.setArchived(true);
         DBHelper.save(advert2);
 
         advert1.addDeliveryOption(pickup);
         advert2.addDeliveryOption(pickup);
+        advert2.addDeliveryOption(carrierPidgeon);
+
 
         DBHelper.save(advert1);
         DBHelper.save(advert2);
