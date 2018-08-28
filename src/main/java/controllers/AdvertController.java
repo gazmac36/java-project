@@ -53,25 +53,9 @@ public class AdvertController {
             Advert advert = new Advert(title, description, category, askingPrice);
             advert.setDeliveryOptions(deliveryOptions);
             DBHelper.save(advert);
-            res.redirect("/adverts/"+advert.getId());
+            res.redirect("/adverts/" + advert.getId());
             return null;
         });
-
-
-//        //show
-//        post("/adverts/:id")
-//        //edit
-//        //update
-//        //destroy(could be archive)
-
-        //show
-//        post("/adverts/:id", (req, res)->{
-//            Map<String, Object> model = new HashMap<>();
-//            int id = Integer.parseInt(req.queryParams("id"));
-//            Advert advert = DBHelper.find(id, Advert.class);
-//
-//
-//        });
 
         //edit
         get("/adverts/:id/edit", (req, res) -> {
@@ -91,7 +75,7 @@ public class AdvertController {
             return new ModelAndView(model, "templates/layout.vtl");
         }, new VelocityTemplateEngine());
         //update
-        post("/adverts/:id", (req, res) ->{
+        post("/adverts/:id", (req, res) -> {
             Integer id = Integer.parseInt(req.params(":id"));
             Advert advert = DBHelper.find(id, Advert.class);
             String title = req.queryParams("title");
@@ -108,11 +92,38 @@ public class AdvertController {
             advert.setCategory(category);
             advert.setDeliveryOptions(deliveryOptions);
             DBHelper.save(advert);
-            res.redirect("/adverts/"+advert.getId());
+            res.redirect("/adverts/" + advert.getId());
             return null;
         });
-        //destroy(could be archive)
-        post("/adverts/:id/delete", (req, res) ->{
+        //archive
+        get("/adverts/:id/archive", (req, res) -> {
+            Integer id = Integer.parseInt(req.params(":id"));
+            Advert advert = DBHelper.find(id, Advert.class);
+            Map<String, Object> model = new HashMap<>();
+            model.put("template", "templates/adverts/confirmArchive.vtl");
+            model.put("advert", advert);
+            return new ModelAndView(model, "templates/layout.vtl");
+        }, new VelocityTemplateEngine());
+
+        post("/adverts/:id/archive", (req, res) -> {
+            Integer id = Integer.parseInt(req.params(":id"));
+            Advert advert = DBHelper.find(id, Advert.class);
+            advert.setArchived(true);
+            DBHelper.save(advert);
+            res.redirect("/adverts");
+            return null;
+        });
+        //destroy
+        get("/adverts/:id/delete", (req, res) -> {
+            Integer id = Integer.parseInt(req.params(":id"));
+            Advert advert = DBHelper.find(id, Advert.class);
+            Map<String, Object> model = new HashMap<>();
+            model.put("template", "templates/adverts/confirmDelete.vtl");
+            model.put("advert", advert);
+            return new ModelAndView(model, "templates/layout.vtl");
+        }, new VelocityTemplateEngine());
+
+        post("/adverts/:id/delete", (req, res) -> {
             Integer id = Integer.parseInt(req.params(":id"));
             Advert advert = DBHelper.find(id, Advert.class);
             DBHelper.delete(advert);
@@ -134,7 +145,6 @@ public class AdvertController {
             model.put("template", "templates/adverts/show.vtl");
             return new ModelAndView(model, "templates/layout.vtl");
         }, new VelocityTemplateEngine());
-
 
 
     }

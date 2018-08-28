@@ -22,6 +22,9 @@ This advert has been taken down
 
 <a href="/adverts">Go back</a>
 <a href="/adverts/$advert.getId()/edit">Edit</a>
-<form action="/adverts/$advert.getId()/delete" method="post">
+<form action="/adverts/$advert.getId()/archive" method="get">
+    <button type="submit">Archive</button>
+</form>
+<form action="/adverts/$advert.getId()/delete" method="get">
     <button type="submit">Delete</button>
 </form>
