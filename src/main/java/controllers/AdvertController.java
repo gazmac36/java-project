@@ -14,6 +14,7 @@ import java.util.*;
 
 import static spark.Spark.get;
 import static spark.Spark.post;
+import static spark.SparkBase.staticFileLocation;
 
 public class AdvertController {
 
@@ -22,6 +23,8 @@ public class AdvertController {
     }
 
     private void setupEndpoints() {
+
+
         //index
         get("/adverts", (req, res) -> {
             Map<String, Object> model = new HashMap<>();
@@ -146,9 +149,20 @@ public class AdvertController {
             return new ModelAndView(model, "templates/layout.vtl");
         }, new VelocityTemplateEngine());
 
+        post("/adverts/:id/unarchive", (req, res) -> {
+            Integer id = Integer.parseInt(req.params(":id"));
+            Advert advert = DBHelper.find(id, Advert.class);
+            advert.setArchived(false);
+            DBHelper.save(advert);
+            res.redirect("/adverts");
+            return null;
+        });
 
     }
 
+
+
+    //private methods
     private List<Integer> getOptionsFromAllParams(Set<String> params) {
         List<Integer> ids = new ArrayList<>();
         for (String param : params) {
@@ -174,5 +188,7 @@ public class AdvertController {
         return findOptionsOnDatabase(ids);
     }
 
-}
 
+
+
+}

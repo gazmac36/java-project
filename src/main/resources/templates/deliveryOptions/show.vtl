@@ -15,6 +15,12 @@
 
 <a href="/delivery-options">Go back</a>
 <a href="/delivery-options/$deliveryOption.getId()/edit">Edit</a>
+#if (!$deliveryOption.isArchived())
 <form action="/delivery-options/$deliveryOption.getId()/archive" method="get">
     <button type="submit">Archive</button>
 </form>
+#else
+<form action="/delivery-options/$deliveryOption.getId()/unarchive" method="post">
+    <button type="submit">Unarchive</button>
+</form>
+#end

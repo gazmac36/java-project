@@ -12,6 +12,7 @@ import java.util.Map;
 
 import static spark.Spark.get;
 import static spark.Spark.post;
+import static spark.SparkBase.staticFileLocation;
 
 public class DeliveryOptionController {
 
@@ -20,6 +21,8 @@ public class DeliveryOptionController {
     }
 
     private void setupEndpoints() {
+
+
 
         //index
         get("/delivery-options", (req, res) -> {
@@ -107,5 +110,15 @@ public class DeliveryOptionController {
             model.put("template", "templates/deliveryOptions/show.vtl");
             return new ModelAndView(model, "templates/layout.vtl");
         }, new VelocityTemplateEngine());
+
+        //unarchive
+        post("/delivery-options/:id/unarchive", (req, res) ->{
+            Integer id = Integer.parseInt(req.params(":id"));
+            DeliveryOption deliveryOption= DBHelper.find(id, DeliveryOption.class);
+            deliveryOption.setArchived(false);
+            DBHelper.save(deliveryOption);
+            res.redirect("/delivery-options");
+            return null;
+        });
     }
 }

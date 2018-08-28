@@ -13,9 +13,15 @@ This category has been deprecated.
 <form class="" action="/categories/$category.getId()/edit" method="get">
     <input type="submit" name="submit" value="EDIT">
 </form>
+#if (!$category.isArchived())
 <form class="" action="/categories/$category.getId()/archive" method="get">
-    <input type="submit" name="submit" value="DELETE">
+    <input type="submit" name="submit" value="ARCHIVE">
 </form>
+#else
+<form class="" action="/categories/$category.getId()/unarchive" method="post">
+    <input type="submit" name="submit" value="UNARCHIVE">
+</form>
+#end
 <form class="" action="/categories" method="get">
     <input type="submit" name="submit" value="CANCEL">
 </form>

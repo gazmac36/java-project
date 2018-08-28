@@ -11,6 +11,7 @@ import java.util.Map;
 
 import static spark.Spark.get;
 import static spark.Spark.post;
+import static spark.SparkBase.staticFileLocation;
 
 public class UserController {
 
@@ -20,16 +21,6 @@ public class UserController {
 
     private void setupEndpoints() {
 
-//        get ("/users/:id/archive", (req, res) ->{
-//            Integer intId = Integer.parseInt(req.params(":id"));
-//            User user = DBHelper.find(intId, User.class);
-//
-//
-//
-//            Map<String, Object> model = new HashMap<>();
-//            model.put("template", "templates/users/edit.vtl");
-//            return new ModelAndView(model, "templates/layout.vtl");
-//        }, new VelocityTemplateEngine());
 
         get("/users/:id/edit", (req, res) -> {
             String strId = req.params(":id");
@@ -58,8 +49,7 @@ public class UserController {
         }, new VelocityTemplateEngine());
 
         get("/users/:id", (req, res) -> {
-            String strId = req.params(":id");
-            Integer intId = Integer.parseInt(strId);
+            Integer intId = Integer.parseInt(req.params(":id"));
             User user = DBHelper.find(intId, User.class);
             Map<String, Object> model = new HashMap<>();
             model.put("user", user);
@@ -155,6 +145,15 @@ public class UserController {
             return null;
 
         }, new VelocityTemplateEngine());
+
+        post("/users/:id/unarchive", (req, res) -> {
+            Integer id = Integer.parseInt(req.params(":id"));
+            User user = DBHelper.find(id, User.class);
+            user.setArchived(false);
+            DBHelper.save(user);
+            res.redirect("/users");
+            return null;
+        });
 
     }
     
