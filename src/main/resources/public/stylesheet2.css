@@ -1,0 +1,69 @@
+/* Set padding and margin for all elements to 0 */
+
+* {
+  padding: 0;
+  margin: 0;
+}
+
+/* Defaults for body and html */
+
+body, html{
+    height: 100%;
+}
+
+/* Table styling for all tables */
+
+table, th, td{
+  border-collapse: collapse;
+  border: 1px solid black;
+}
+
+th, td {
+  padding: 5px;
+  text-align: center;
+  vertical-align: middle;
+}
+
+/* Grid layout for layout.vtl */
+
+.container-layout {
+  height:100%;
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  grid-template-rows: 100px 500px 100px;
+  grid-template-areas:
+    "h h h h h h h h h h h h"
+    ". c c c c c c c c c c ."
+    "f f f f f f f f f f f f";
+}
+
+/* Main navigation bar in layout.vtl */
+
+header {
+  grid-area: h;
+  border-bottom: 2px solid #e6eaed;
+}
+
+.nav-primary ul {
+  text-align: center;
+  list-style-type: none;
+}
+
+.nav-primary li {
+  display: inline;
+}
+
+.nav-primary a {
+ text-decoration: none;
+}
+
+/* Main body of all pages */
+
+main {
+  grid-area: c;
+}
+
+footer{
+  grid-area: f;
+  border-top: 2px solid #e6eaed;
+}
