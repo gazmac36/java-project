@@ -1,0 +1,131 @@
+/* Set padding and margin for all elements to 0 */
+
+* {
+  padding: 0;
+  margin: 0;
+
+}
+
+body {
+  font-family: Geneva, helvetica;
+}
+
+a {
+    text-decoration: none;
+    color: black;
+}
+
+/* CSS Grid container */
+
+.container {
+    height: 100%;
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    grid-template-rows: 60px auto 60px;
+    grid-template-areas: 
+        "h h h h h h h h h h h h"
+        ". c c c c c c c c c c ."
+        "f f f f f f f f f f f f";
+}
+
+/* Styling for header */
+
+header {
+    grid-area: h;
+    display:grid;
+    grid-template-columns: repeat(6, 1fr);
+    grid-template-areas:
+            "l l s s n n";
+
+    justify-items: center;
+    align-items: center;
+    border-bottom: 2px solid #e6eaed;
+
+}
+
+/* Styling for nav */
+
+.nav-primary {
+    grid-area: n;
+    }
+
+.nav-primary ul {
+  text-align: center;
+  list-style-type: none;
+}
+
+.nav-primary li {
+  display: inline;
+  padding: 0 5px;
+
+}
+
+.nav-primary a {
+ text-decoration: none;
+ text-align: center;
+}
+
+/* Styling for logo */
+
+.logo {
+    grid-area: l;
+    margin-left: 5px;
+
+}
+
+/* Styling for search */
+
+.search {
+    grid-area: s;
+}
+
+.search input {
+    border: 1px solid #e6eaed;
+    border-radius: 50px;
+    height: 40px;
+    width: 300px;
+}
+
+input {
+    padding: 0 20px;
+    font-size: 16px;
+}
+
+/* Styling for main content */
+
+main {
+    grid-area: c;
+    overflow: auto;
+    padding-top: 30px;
+}
+
+main h3 {
+    text-align: center;
+    padding-bottom: 20px;
+}
+
+/* Styling for footer */
+
+footer {
+    border-top: 2px solid #e6eaed;
+    grid-area: f;
+}
+
+/* Table styling for all tables */
+
+table {
+    margin: 0 auto;
+}
+
+table, th, td{
+
+  border-collapse: collapse;
+  border: 1px solid black;
+  font-size: 12px;
+}
+
+th, td {
+  padding: 5px;
+  text-align: center;
+  vertical-align: middle;
+}

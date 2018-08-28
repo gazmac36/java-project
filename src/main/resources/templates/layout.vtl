@@ -1,31 +1,29 @@
 <html>
 <head>
-
-    <link rel="stylesheet" href="index.css">
-    <link rel="stylesheet" href="basic.css">
-<!--=======-->
-    <!--<meta charset="UTF-8">-->
-    <!--<meta name="viewport"-->
-          <!--content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">-->
-    <!--<meta http-equiv="X-UA-Compatible" content="ie=edge">-->
-    <!--<title>Document</title>-->
-    <!--<link rel="stylesheet" href="nightmode.css">-->
-<!--&gt;>>>>>> fd92f769c9379e735565f410537bc37badf9a466-->
+    <link rel="stylesheet" href="stylesheet.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
 </head>
 <body>
 <div class="container">
-    <div class="header">
+    <header>
+        <a href="/"><img class="logo" src="/images/site-logo.png"></a>
         <nav class="nav-primary">
             <ul>
                 <li><a href="/users">Users</a></li>
                 <li><a href="/adverts">Adverts</a></li>
-                <li><a href="/delivery-options">Delivery Options</a></li>
+                <li><a href="/delivery-options">Delivery</a></li>
                 <li><a href="/categories">Categories</a></li>
             </ul>
         </nav>
-    </div>
-    <main>   #parse($template)</main>
-    <div class="footer">FOOTER</div>
+            <div class="search">
+            <input type="text" placeholder="search for an item . . .">
+            <a class="search-btn" href="#">
+                <i class="fas fa-search"></i>
+            </a>
+            </div>
+    </header>
+    <main>#parse($template)</main>
+    <footer></footer>
 </div>
 </body>
 </html>
