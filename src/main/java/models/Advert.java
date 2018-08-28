@@ -15,7 +15,8 @@ public class Advert {
     +category Enum(Category)
     +askingPrice int
     +deliveryOption Set<Enums>
-    +id
+    +id int
+    +archived boolean
     -POJO functions
     */
 
@@ -25,6 +26,7 @@ public class Advert {
     private Category category;
     private double askingPrice;
     private Set<DeliveryOption> deliveryOptions;
+    private boolean archived;
 
     public Advert(String title, String description, Category category, double askingPrice) {
         this.title = title;
@@ -32,6 +34,7 @@ public class Advert {
         this.askingPrice = askingPrice;
         this.category = category;
         this.deliveryOptions = new HashSet<DeliveryOption>();
+        this.archived = false;
     }
 
     public Advert() {
@@ -105,5 +108,12 @@ public class Advert {
         deliveryOptions.add(deliveryOption);
     }
 
+    @Column(name = "archived")
+    public boolean isArchived() {
+        return archived;
+    }
 
+    public void setArchived(boolean archived) {
+        this.archived = archived;
+    }
 }

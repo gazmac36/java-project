@@ -1,0 +1,11 @@
+<h3>Delivery option $deliveryOption.getTitle() has no adverts. Delete instead?</h3>
+
+<form class="" action="/delivery-options/$deliveryOption.getId()/delete" method="post">
+<input type="submit" name="submit" value="YES">
+</form>
+<form class="" action="/delivery-options/$deliveryOption.getId()/archive" method="post">
+    <input type="submit" name="submit" value="NO, JUST ARCHIVE IT">
+</form>
+<form class="" action="/delivery-options/$deliveryOption.getId()" method="get">
+    <input type="submit" name="submit" value="CANCEL">
+</form>

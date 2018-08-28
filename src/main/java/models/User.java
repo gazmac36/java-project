@@ -17,6 +17,7 @@ public class User {
     private String username;
     private String contactPhone;
     private String contactEmail;
+    private boolean archived;
 
     public User(String firstName, String lastName, String addressLine1, String addressLine2, String addressCity, String addressCounty, String addressPostcode, String username, String contactPhone, String contactEmail) {
         this.firstName = firstName;
@@ -29,6 +30,7 @@ public class User {
         this.username = username;
         this.contactPhone = contactPhone;
         this.contactEmail = contactEmail;
+        this.archived = false;
     }
 
     public User() {
@@ -133,5 +135,14 @@ public class User {
 
     public void setContactEmail(String contactEmail) {
         this.contactEmail = contactEmail;
+    }
+
+    @Column(name = "archived")
+    public boolean isArchived() {
+        return archived;
+    }
+
+    public void setArchived(boolean archived) {
+        this.archived = archived;
     }
 }

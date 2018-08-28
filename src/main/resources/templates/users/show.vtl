@@ -37,9 +37,21 @@
         <td>$user.getContactEmail()</td>
     </tr>
 </table>
+#if ($user.isArchived())
+<p>This user account is inactive.</p>
+#end
 <form class="" action="/users/$user.getId()/edit" method="get">
     <input type="submit" name="submit" value="EDIT">
 </form>
+#if (!$user.isArchived())
+<form class="" action="/users/$user.getId()/archive" method="get">
+    <input type="submit" name="submit" value="ARCHIVE">
+</form>
+#else
+<form class="" action="/users/$user.getId()/unarchive" method="post">
+    <input type="submit" name="submit" value="UNARCHIVE">
+</form>
+#end
 <form class="" action="/users/$user.getId()/delete" method="get">
     <input type="submit" name="submit" value="DELETE">
 </form>

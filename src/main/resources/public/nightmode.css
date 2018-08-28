@@ -1,0 +1,32 @@
+body {
+background-color: #073642;
+color: #2aa198;
+font-family: monaco;
+}
+
+table, th, td{
+  border-collapse: collapse;
+  border: 1px solid black;
+}
+
+th, td {
+  padding: 5px;
+  text-align: center;
+  vertical-align: middle;
+}
+
+a:link {
+  color: #e96630;
+}
+
+a:visited {
+  color: #f3aa8c;
+}
+
+a:hover {
+  color: #e96630;
+}
+
+a:active {
+  color: #e96630;
+}

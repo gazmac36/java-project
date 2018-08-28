@@ -1,7 +1,10 @@
-<h3>Delete $category.getCategoryName() ?</h3>
+<h3>$category.getCategoryName() has no adverts. Delete it instead? ?</h3>
 
 <form class="" action="/categories/$category.getId()/delete" method="post">
-<input type="submit" name="submit" value="CONFIRM">
+    <input type="submit" name="submit" value="YES">
+</form>
+<form class="" action="/categories/$category.getId()/archive" method="post">
+    <input type="submit" name="submit" value="NO, ARCHIVE INSTEAD">
 </form>
 <form class="" action="/categories/$category.getId()" method="get">
     <input type="submit" name="submit" value="CANCEL">

@@ -13,7 +13,7 @@ public class DBCategory {
 
     private static Session session;
 
-    public static List<Advert> advertsByCategory(Category category) {
+    public static List<Advert> findAdvertsByCategory(Category category) {
         List<Advert> results = null;
         session = HibernateUtil.getSessionFactory().openSession();
         try {

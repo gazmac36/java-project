@@ -1,4 +1,9 @@
- #foreach ($category in $categories)
+
+<ul>
+    #foreach ($category in $categories)
+    #if (!$category.isArchived())
     <li><a href="/categories/$category.getId()/adverts">$category.getCategoryName()</a></li>
     #end
+    #end
+</ul>
 

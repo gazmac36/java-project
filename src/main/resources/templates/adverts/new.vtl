@@ -13,7 +13,9 @@
         <label for="category">Category:</label>
         <select id="category" name="category">
                 #foreach( $category in $categories )
+                #if (!$category.isArchived())
                 <option value="$category.getId()">$category.getCategoryName()</option>
+                #end
                 #end
         </select>
 
@@ -21,8 +23,10 @@
         <input type="number" class="inputbox" name="askingPrice" required="true" id="price">
 
         #foreach( $option in $deliveryOptions)
+        #if (!$option.isArchived())
         <input type="checkbox" value="$option.getId()_option" id="deliveryOption" name="$option.getId()_option">
         <label for="deliveryOption">$option.getTitle()</label>
+        #end
         #end
 
 

@@ -16,9 +16,21 @@
         #end
     </ul>
 </div>
+#if ($advert.isArchived())
+This advert has been taken down
+#end
 
 <a href="/adverts">Go back</a>
 <a href="/adverts/$advert.getId()/edit">Edit</a>
-<form action="/adverts/$advert.getId()/delete" method="post">
+#if (!$advert.isArchived())
+<form action="/adverts/$advert.getId()/archive" method="get">
+    <button type="submit">Archive</button>
+</form>
+#else
+<form action="/adverts/$advert.getId()/unarchive" method="post">
+    <button type="submit">Unachive</button>
+</form>
+#end
+<form action="/adverts/$advert.getId()/delete" method="get">
     <button type="submit">Delete</button>
 </form>

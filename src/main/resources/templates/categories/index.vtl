@@ -10,7 +10,7 @@
     </tr>
 #foreach ($category in $categories)
 <tr>
-    <td>$category.getCategoryName()</td>
+    <td>$category.getCategoryName() #if ($category.isArchived()) DEPRECATED #end</td>
     <td><a href="/categories/$category.getId()">VIEW</a></td>
 </tr>
 #end

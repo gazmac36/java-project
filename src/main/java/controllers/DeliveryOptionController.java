@@ -1,5 +1,6 @@
 package controllers;
 
+import db.DBDeliveryOption;
 import db.DBHelper;
 import models.DeliveryOption;
 import spark.ModelAndView;
@@ -11,6 +12,7 @@ import java.util.Map;
 
 import static spark.Spark.get;
 import static spark.Spark.post;
+import static spark.SparkBase.staticFileLocation;
 
 public class DeliveryOptionController {
 
@@ -19,6 +21,8 @@ public class DeliveryOptionController {
     }
 
     private void setupEndpoints() {
+
+
 
         //index
         get("/delivery-options", (req, res) -> {
@@ -64,7 +68,32 @@ public class DeliveryOptionController {
             res.redirect("/delivery-options/"+deliveryOption.getId());
             return null;
         });
-        //destroy(could be archive)
+
+        //archive & destroy
+        //get method for archive is also get method for destroy
+        get("/delivery-options/:id/archive", (req, res)->{
+            Integer id = Integer.parseInt(req.params(":id"));
+            DeliveryOption deliveryOption= DBHelper.find(id, DeliveryOption.class);
+            Map<String, Object> model = new HashMap<>();
+            if (DBDeliveryOption.findAdvertsByDeliveryOption(deliveryOption).size() == 0){
+                model.put("template", "templates/deliveryOptions/confirmDelete.vtl");
+                model.put("deliveryOption", deliveryOption);
+            } else {
+                model.put("template", "templates/deliveryOptions/confirmArchive.vtl");
+                model.put("deliveryOption", deliveryOption);
+            }
+            return new ModelAndView(model, "templates/layout.vtl");
+        }, new VelocityTemplateEngine());
+
+        post("/delivery-options/:id/archive", (req, res) ->{
+            Integer id = Integer.parseInt(req.params(":id"));
+            DeliveryOption deliveryOption= DBHelper.find(id, DeliveryOption.class);
+            deliveryOption.setArchived(true);
+            DBHelper.save(deliveryOption);
+            res.redirect("/delivery-options");
+            return null;
+        });
+
         post("/delivery-options/:id/delete", (req, res) -> {
             Integer id = Integer.parseInt(req.params(":id"));
             DeliveryOption deliveryOption = DBHelper.find(id, DeliveryOption.class);
@@ -81,5 +110,15 @@ public class DeliveryOptionController {
             model.put("template", "templates/deliveryOptions/show.vtl");
             return new ModelAndView(model, "templates/layout.vtl");
         }, new VelocityTemplateEngine());
+
+        //unarchive
+        post("/delivery-options/:id/unarchive", (req, res) ->{
+            Integer id = Integer.parseInt(req.params(":id"));
+            DeliveryOption deliveryOption= DBHelper.find(id, DeliveryOption.class);
+            deliveryOption.setArchived(false);
+            DBHelper.save(deliveryOption);
+            res.redirect("/delivery-options");
+            return null;
+        });
     }
 }

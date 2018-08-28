@@ -4,7 +4,6 @@ import db.DBCategory;
 import db.DBHelper;
 import models.Advert;
 import models.Category;
-import models.User;
 import spark.ModelAndView;
 import spark.template.velocity.VelocityTemplateEngine;
 
@@ -14,6 +13,7 @@ import java.util.Map;
 
 import static spark.Spark.get;
 import static spark.Spark.post;
+import static spark.SparkBase.staticFileLocation;
 
 public class CategoryController {
 
@@ -23,10 +23,12 @@ public class CategoryController {
 
     private void setupEndpoints() {
 
+
+
         get("categories/:id/adverts", (req,res) -> {
             Integer intId = Integer.parseInt(req.params("id"));
             Category category = DBHelper.find(intId, Category.class);
-            List<Advert> adverts = DBCategory.advertsByCategory(category);
+            List<Advert> adverts = DBCategory.findAdvertsByCategory(category);
 
             Map<String, Object> model = new HashMap<>();
             model.put("adverts", adverts);
@@ -82,13 +84,30 @@ public class CategoryController {
             return new ModelAndView(model, "templates/layout.vtl");
         }, new VelocityTemplateEngine());
 
-        post ("/categories", (req, res) -> {
-            String categoryName = req.queryParams("categoryName");
-            Category category = new Category(categoryName);
+        //archive & destroy
+        //get method for archive is also get method for destroy
+        get("/categories/:id/archive", (req, res)->{
+            Integer id = Integer.parseInt(req.params(":id"));
+            Category category= DBHelper.find(id, Category.class);
+            Map<String, Object> model = new HashMap<>();
+            if (DBCategory.findAdvertsByCategory(category).size() == 0){
+                model.put("template", "templates/categories/confirmDelete.vtl");
+                model.put("category", category);
+            } else {
+                model.put("template", "templates/categories/confirmArchive.vtl");
+                model.put("category", category);
+            }
+            return new ModelAndView(model, "templates/layout.vtl");
+        }, new VelocityTemplateEngine());
+
+        post("/categories/:id/archive", (req, res) ->{
+            Integer id = Integer.parseInt(req.params(":id"));
+            Category category= DBHelper.find(id, Category.class);
+            category.setArchived(true);
             DBHelper.save(category);
             res.redirect("/categories");
             return null;
-        }, new VelocityTemplateEngine());
+        });
 
         post ("/categories/:id/delete", (req, res) -> {
             String strId = req.params(":id");
@@ -98,6 +117,16 @@ public class CategoryController {
             res.redirect("/categories");
             return null;
         }, new VelocityTemplateEngine());
+
+        post ("/categories", (req, res) -> {
+            String categoryName = req.queryParams("categoryName");
+            Category category = new Category(categoryName);
+            DBHelper.save(category);
+            res.redirect("/categories");
+            return null;
+        }, new VelocityTemplateEngine());
+
+
 
         post ("/categories/:id", (req, res) -> {
             String strId = req.params(":id");
@@ -110,6 +139,15 @@ public class CategoryController {
             return null;
 
         }, new VelocityTemplateEngine());
+
+        post("/categories/:id/unarchive", (req, res) ->{
+            Integer id = Integer.parseInt(req.params(":id"));
+            Category category= DBHelper.find(id, Category.class);
+            category.setArchived(false);
+            DBHelper.save(category);
+            res.redirect("/categories");
+            return null;
+        });
 
     }
     

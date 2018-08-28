@@ -4,6 +4,6 @@
 <a href="/adverts/new">Create advert</a>
 
 #foreach ($advert in $adverts)
-<h4>$advert.getTitle()</h4>
+<h4>$advert.getTitle() #if ($advert.isArchived()) INACTIVE #end</h4>
 <a href="adverts/$advert.getId()">View</a>
 #end

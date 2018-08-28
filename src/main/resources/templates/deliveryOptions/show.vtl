@@ -9,8 +9,18 @@
     <p>$deliveryOption.getPrice()</p>
 </div>
 
+#if ($deliveryOption.isArchived())
+<p>This delivery option has been deprecated.</p>
+#end
+
 <a href="/delivery-options">Go back</a>
 <a href="/delivery-options/$deliveryOption.getId()/edit">Edit</a>
-<form action="/delivery-options/$deliveryOption.getId()/delete" method="post">
-    <button type="submit">Delete</button>
+#if (!$deliveryOption.isArchived())
+<form action="/delivery-options/$deliveryOption.getId()/archive" method="get">
+    <button type="submit">Archive</button>
 </form>
+#else
+<form action="/delivery-options/$deliveryOption.getId()/unarchive" method="post">
+    <button type="submit">Unarchive</button>
+</form>
+#end
