@@ -14,5 +14,12 @@
     <li><a href="/delivery-options">Delivery Options</a></li>
     <li><a href="/categories">Categories</a></li>
 </ul>
+
+
+<ul>
+    #foreach ($category in $categories)
+    <li><a href="/categories/$category.getId()/adverts">$category.getCategoryName()</a></li>
+    #end
+</ul>
 </body>
 </html>

@@ -1,6 +1,8 @@
 package controllers;
 
+import db.DBCategory;
 import db.DBHelper;
+import models.Advert;
 import models.Category;
 import models.User;
 import spark.ModelAndView;
@@ -20,6 +22,18 @@ public class CategoryController {
     }
 
     private void setupEndpoints() {
+
+        get("categories/:id/adverts", (req,res) -> {
+            Integer intId = Integer.parseInt(req.params("id"));
+            Category category = DBHelper.find(intId, Category.class);
+            List<Advert> adverts = DBCategory.advertsByCategory(category);
+
+            Map<String, Object> model = new HashMap<>();
+            model.put("adverts", adverts);
+            model.put("template", "templates/categories/advertFilter.vtl");
+            return new ModelAndView(model, "templates/layout.vtl");
+
+        }, new VelocityTemplateEngine());
 
         get("/categories/:id/edit", (req, res) -> {
             String strId = req.params(":id");
