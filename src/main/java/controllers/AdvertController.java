@@ -144,7 +144,7 @@ public class AdvertController {
             Map<String, Object> model = new HashMap<>();
             Integer id = Integer.parseInt(req.params(":id"));
             Advert advert = DBHelper.find(id, Advert.class);
-            Set<Comment> comments = DBAdvert.findCommentsByAdvert(advert);
+            List<Comment> comments = DBAdvert.findCommentsByAdvert(advert);
             Set<DeliveryOption> deliveryOptions = DBAdvert.findDeliveryOptionsByAdvert(advert);
             model.put("comments", comments);
             model.put("deliveryOptions", deliveryOptions);
