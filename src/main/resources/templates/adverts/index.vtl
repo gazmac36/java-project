@@ -8,16 +8,30 @@
 <th>Archived</th>
 <th></th>
 </tr>
+#if ($results.size() > 0)
+#foreach ($advert in $results)
+<tr>
+    <td>$advert.getTitle()</td>
+    <td>$advert.getDescription()</td>
+    <td>$advert.getCategory().getCategoryName()</td>
+    <td>$advert.getAskingPrice()</td>
+    <td></td>
+    <td>#if (!$advert.isArchived()) ACTIVE #else INACTIVE #end</td>
+    <td><a href="/adverts/$advert.getId()"><i class="far fa-eye fa-2x"></i></a>
+</tr>
+#end
+#else
 #foreach ($advert in $adverts)
 <tr>
-<td>$advert.getTitle()</td>
-<td>$advert.getDescription()</td>
-<td>$advert.getCategory().getCategoryName()</td>
-<td>$advert.getAskingPrice()</td>
-<td></td>
-<td>#if (!$advert.isArchived()) ACTIVE #else INACTIVE #end</td>
-<td><a href="/adverts/$advert.getId()"><i class="far fa-eye fa-2x"></i></a>
+    <td>$advert.getTitle()</td>
+    <td>$advert.getDescription()</td>
+    <td>$advert.getCategory().getCategoryName()</td>
+    <td>$advert.getAskingPrice()</td>
+    <td></td>
+    <td>#if (!$advert.isArchived()) ACTIVE #else INACTIVE #end</td>
+    <td><a href="/adverts/$advert.getId()"><i class="far fa-eye fa-2x"></i></a>
 </tr>
+#end
 #end
 </table>
 <form class="" action="/adverts/new" method="get">
