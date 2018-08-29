@@ -9,10 +9,11 @@
 #foreach ($category in $categories)
 <tr>
     <td>$category.getCategoryName() #if ($category.isArchived()) DEPRECATED #end</td>
-    <td><a href="/categories/$category.getId()">VIEW</a></td>
+    <td><a href="/categories/$category.getId()"><i class="far fa-eye fa-2x"></a></td>
 </tr>
 #end
 </table>
 <form class="" action="/categories/new" method="get">
     <input type="submit" name="submit" value="NEW">
 </form>
+
