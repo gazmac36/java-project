@@ -117,8 +117,11 @@ table {
     margin: 0 auto;
 }
 
-table, th, td{
+td{
+  text-align: left;
+}
 
+table, th, td{
   border-collapse: collapse;
   border: 1px solid black;
   font-size: 12px;
@@ -130,6 +133,3 @@ th, td {
   vertical-align: middle;
 }
 
-button {
-    background-color: white;
-}

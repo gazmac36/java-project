@@ -29,11 +29,11 @@ public class AdvertController {
         get("/adverts", (req, res) -> {
             Map<String, Object> model = new HashMap<>();
             List<Advert> adverts = null;
-            if (req.queryParams("query") == ""){
+//            if (req.queryParams("query") == ""){
                 adverts = DBHelper.getAll(Advert.class);
-            } else {
-                adverts = DBAdvert.searchForAdvert(req.queryParams("query"));
-            }
+//            } else {
+//                adverts = DBAdvert.searchForAdvert(req.queryParams("query"));
+//            }
             model.put("adverts", adverts);
             model.put("template", "templates/adverts/index.vtl");
             return new ModelAndView(model, "templates/layout.vtl");

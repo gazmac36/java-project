@@ -26,7 +26,7 @@
         <td>$user.getContactPhone()</td>
         <td>$user.getContactEmail()</td>
         <td>#if (!$user.isArchived()) ACTIVE #else INACTIVE #end</td>
-        <td><a href="/users/$user.getId()"><i class="far fa-eye fa-2x"></i></a>
+        <td><a href="/users/$user.getId()"><i class="far fa-eye fa-2x" id="eye"></i></a>
     </tr>
     #end
 </table>
