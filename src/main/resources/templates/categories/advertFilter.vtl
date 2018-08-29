@@ -1,5 +1,7 @@
 <ul>
     #foreach ($advert in $adverts)
+    #if (!$advert.isArchived())
     <li><a href="/adverts/$advert.getId()">$advert.getTitle()</a></li>
+    #end
     #end
 </ul>

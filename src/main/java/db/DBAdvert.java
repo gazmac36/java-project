@@ -6,6 +6,7 @@ import models.DeliveryOption;
 import org.hibernate.Criteria;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
+import org.hibernate.criterion.MatchMode;
 import org.hibernate.criterion.Restrictions;
 
 import java.util.ArrayList;
@@ -39,5 +40,20 @@ public class DBAdvert {
             deliveryOptions.add(item);
         }
         return deliveryOptions;
+    }
+    public static List<Advert> searchForAdvert(String query){
+        List<Advert> results = null;
+        session = HibernateUtil.getSessionFactory().openSession();
+        try{
+            Criteria cr = session.createCriteria(Advert.class);
+            cr.add(Restrictions.eq("archived", false));
+            cr.add(Restrictions.ilike("title", query, MatchMode.ANYWHERE));
+            results = cr.list();
+        } catch(HibernateException ex){
+            ex.printStackTrace();
+        } finally {
+            session.close();
+        }
+        return results;
     }
 }
