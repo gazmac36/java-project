@@ -16,11 +16,14 @@
                 <li><a href="/categories">Categories</a></li>
             </ul>
         </nav>
+
             <div class="search">
-            <input type="text" placeholder="search for an item . . .">
-            <a class="search-btn" href="/">
+                <form action="/adverts" method="get">
+            <input name="query" type="text" placeholder="search for an item . . .">
+            <button class="search-btn" type="submit">
                 <i class="fas fa-search"></i>
-            </a>
+            </button>
+                </form>
             </div>
     </header>
     <main>#parse($template)</main>
