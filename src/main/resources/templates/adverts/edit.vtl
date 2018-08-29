@@ -23,7 +23,7 @@
     <input type="number" class="inputbox" name="askingPrice" required="true" id="price" value="$advert.getAskingPrice()">
 
     #foreach( $option in $deliveryOptions)
-
+    #if (!$option.isArchived())
         <input type="checkbox" value="$option.getId()_option" id="deliveryOption" name="$option.getId()_option"
         #foreach ($advertOption in $advertDeliveryOptions)
         #if ($option.getId() == $advertOption.getId())
@@ -32,6 +32,7 @@
         #end>
 
         <label for="deliveryOption">$option.getTitle()</label>
+    #end
     #end
 
 
