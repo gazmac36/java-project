@@ -29,6 +29,7 @@ public class Advert {
     private Set<DeliveryOption> deliveryOptions;
     private boolean archived;
     private Set<Comment> comments;
+    private Set<User> favouriteBy;
 
     public Advert(String title, String description, Category category, double askingPrice) {
         this.title = title;
@@ -38,6 +39,7 @@ public class Advert {
         this.deliveryOptions = new HashSet<DeliveryOption>();
         this.archived = false;
         this.comments = new HashSet<>();
+        this.favouriteBy = new HashSet<>();
     }
 
     public Advert() {
@@ -92,7 +94,6 @@ public class Advert {
     }
 
 
-
     @Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)
     @ManyToMany
     @JoinTable(name = "adverts_delivery_options",
@@ -107,7 +108,7 @@ public class Advert {
         this.deliveryOptions = deliveryOptions;
     }
 
-    public void addDeliveryOption(DeliveryOption deliveryOption){
+    public void addDeliveryOption(DeliveryOption deliveryOption) {
         deliveryOptions.add(deliveryOption);
     }
 
@@ -128,4 +129,19 @@ public class Advert {
     public void setComments(Set<Comment> comments) {
         this.comments = comments;
     }
+
+
+    @Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)
+    @ManyToMany
+    @JoinTable(name = "users_favourites",
+            joinColumns = {@JoinColumn(name = "advert_id", nullable = false, updatable = false)},
+            inverseJoinColumns = {@JoinColumn(name = "user_id", nullable = false, updatable = false)})
+    public Set<User> getFavourites() {
+        return favouriteBy;
+    }
+
+    public void setFavourites(Set<User> favouriteBy) {
+        this.favouriteBy = favouriteBy;
+    }
 }
+

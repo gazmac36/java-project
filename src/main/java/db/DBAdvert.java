@@ -8,6 +8,7 @@ import org.hibernate.Criteria;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.criterion.MatchMode;
+import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Restrictions;
 
 import java.util.ArrayList;
@@ -60,12 +61,13 @@ public class DBAdvert {
         return results;
     }
 
-    public static Set<Comment> findCommentsByAdvert(Advert advert) {
+    public static List<Comment> findCommentsByAdvert(Advert advert) {
         List<Comment> results = null;
         session = HibernateUtil.getSessionFactory().openSession();
         try {
             Criteria cr = session.createCriteria(Comment.class);
             cr.add(Restrictions.eq("advert", advert));
+            cr.addOrder(Order.desc("id"));
             results = cr.list();
 
         } catch (HibernateException ex) {
@@ -73,10 +75,6 @@ public class DBAdvert {
         } finally {
             session.close();
         }
-        Set<Comment> comments = new HashSet<>();
-        for (Comment item : results) {
-            comments.add(item);
-        }
-        return comments;
+        return results;
     }
 }
