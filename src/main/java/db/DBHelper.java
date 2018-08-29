@@ -1,6 +1,7 @@
 package db;
 
 import org.hibernate.*;
+import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Restrictions;
 
 import java.util.List;
@@ -44,6 +45,7 @@ public class DBHelper {
         session = HibernateUtil.getSessionFactory().openSession();
         Criteria cr = session.createCriteria(classType);
         cr.add(Restrictions.eq("archived", false));
+        cr.addOrder(Order.desc("id"));
         return getList(cr);
     }
 
@@ -51,6 +53,7 @@ public class DBHelper {
         session = HibernateUtil.getSessionFactory().openSession();
         Criteria cr = session.createCriteria(classType);
         cr.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY);
+        cr.addOrder(Order.desc("id"));
         return getList(cr);
     }
 
