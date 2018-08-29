@@ -9,12 +9,47 @@
     <header>
         <a href="/"><img class="logo" src="/images/site-logo.png"></a>
         <nav class="nav-primary">
+            <div class="navbar">
             <ul>
-                <li><a href="/users">Users</a></li>
-                <li><a href="/adverts">Adverts</a></li>
-                <li><a href="/delivery-options">Delivery</a></li>
-                <li><a href="/categories">Categories</a></li>
+                <li><div class="dropdown">
+                <button class="dropbtn">Users
+                </button>
+                <div class="dropdown-content">
+                    <a href="/users/new">New</a>
+                    <a href="/users">View all</a>
+                </div>
+                </div>
+                </li>
+            <li><div class="dropdown">
+                <button class="dropbtn">Adverts
+                </button>
+                <div class="dropdown-content">
+                    <a href="/adverts/new">New</a>
+                    <a href="/adverts">View all</a>
+                </div>
+            </div>
+            </li>
+            <li><div class="dropdown">
+                <button class="dropbtn">Delivery
+                </button>
+                <div class="dropdown-content">
+                    <a href="/delivery-options/new">New</a>
+                    <a href="/delivery-options">View all</a>
+
+                </div>
+            </div>
+            </li>
+                <li><div class="dropdown">
+                    <button class="dropbtn">Categories
+                    </button>
+                    <div class="dropdown-content">
+                        <a href="/categories/new">New</a>
+                        <a href="/categories">View all</a>
+                    </div>
+                </div>
+                </li>
             </ul>
+            </div>
         </nav>
 
             <div class="search">
