@@ -1,6 +1,25 @@
-<a href="/adverts/new">Create advert</a>
-
+<table>
+<tr>
+<th>Title</th>
+<th>Description</th>
+<th>Category</th>
+<th>Asking Price</th>
+<th>Delivery Options</th>
+<th>Archived</th>
+<th></th>
+</tr>
 #foreach ($advert in $adverts)
-<h4>$advert.getTitle() #if ($advert.isArchived()) INACTIVE #end</h4>
-<a href="adverts/$advert.getId()">View</a>
+<tr>
+<td>$advert.getTitle()</td>
+<td>$advert.getDescription()</td>
+<td>$advert.getCategory().getCategoryName()</td>
+<td>$advert.getAskingPrice()</td>
+<td></td>
+<td>#if (!$advert.isArchived()) ACTIVE #else INACTIVE #end</td>
+<td><a href="/adverts/$advert.getId()"><i class="far fa-eye fa-2x"></i></a>
+</tr>
 #end
+</table>
+<form class="" action="/adverts/new" method="get">
+<input type="submit" name="submit" value="NEW">
+</form>

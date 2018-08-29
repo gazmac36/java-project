@@ -1,5 +1,5 @@
 <h3>All Users</h3>
-<p>
+
 <table>
     <tr>
         <th>Name</th>
@@ -26,11 +26,10 @@
         <td>$user.getContactPhone()</td>
         <td>$user.getContactEmail()</td>
         <td>#if (!$user.isArchived()) ACTIVE #else INACTIVE #end</td>
-        <td><a href="/users/$user.getId()">VIEW</a>
+        <td><a href="/users/$user.getId()"><i class="far fa-eye fa-2x"></i></a>
     </tr>
     #end
 </table>
 <form class="" action="/users/new" method="get">
     <input type="submit" name="submit" value="NEW">
 </form>
-</p>
