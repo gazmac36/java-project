@@ -2,6 +2,7 @@ package db;
 
 
 import models.Advert;
+import models.Comment;
 import models.DeliveryOption;
 import org.hibernate.Criteria;
 import org.hibernate.HibernateException;
@@ -16,44 +17,66 @@ import java.util.Set;
 
 public class DBAdvert {
     private static Session session;
-    public static void addDeliveryOptionToAdvert(Advert advert, DeliveryOption deliveryOption){
+
+    public static void addDeliveryOptionToAdvert(Advert advert, DeliveryOption deliveryOption) {
         advert.addDeliveryOption(deliveryOption);
         DBHelper.save(advert);
     }
 
-    public static Set<DeliveryOption> findDeliveryOptionsByAdvert(Advert advert){
+    public static Set<DeliveryOption> findDeliveryOptionsByAdvert(Advert advert) {
         List<DeliveryOption> results = null;
         session = HibernateUtil.getSessionFactory().openSession();
-        try{
+        try {
             Criteria cr = session.createCriteria(DeliveryOption.class);
             cr.createAlias("adverts", "advert");
             cr.add(Restrictions.eq("advert.id", advert.getId()));
             results = cr.list();
 
-        } catch(HibernateException ex){
+        } catch (HibernateException ex) {
             ex.printStackTrace();
-        } finally{
+        } finally {
             session.close();
         }
         Set<DeliveryOption> deliveryOptions = new HashSet<>();
-        for(DeliveryOption item:results){
+        for (DeliveryOption item : results) {
             deliveryOptions.add(item);
         }
         return deliveryOptions;
     }
-    public static List<Advert> searchForAdvert(String query){
+
+    public static List<Advert> searchForAdvert(String query) {
         List<Advert> results = null;
         session = HibernateUtil.getSessionFactory().openSession();
-        try{
+        try {
             Criteria cr = session.createCriteria(Advert.class);
             cr.add(Restrictions.eq("archived", false));
             cr.add(Restrictions.ilike("title", query, MatchMode.ANYWHERE));
             results = cr.list();
-        } catch(HibernateException ex){
+        } catch (HibernateException ex) {
             ex.printStackTrace();
         } finally {
             session.close();
         }
         return results;
+    }
+
+    public static Set<Comment> findCommentsByAdvert(Advert advert) {
+        List<Comment> results = null;
+        session = HibernateUtil.getSessionFactory().openSession();
+        try {
+            Criteria cr = session.createCriteria(Comment.class);
+            cr.add(Restrictions.eq("advert", advert));
+            results = cr.list();
+
+        } catch (HibernateException ex) {
+            ex.printStackTrace();
+        } finally {
+            session.close();
+        }
+        Set<Comment> comments = new HashSet<>();
+        for (Comment item : results) {
+            comments.add(item);
+        }
+        return comments;
     }
 }

@@ -40,7 +40,7 @@ public class Category {
         this.categoryName = category;
     }
 
-    @OneToMany(mappedBy = "category", fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "category", fetch = FetchType.LAZY)
     public Set<Advert> getAdverts() {
         return adverts;
     }

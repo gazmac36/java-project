@@ -4,12 +4,14 @@ import db.DBAdvert;
 import db.DBHelper;
 import models.Advert;
 import models.Category;
+import models.Comment;
 import models.DeliveryOption;
 import org.omg.PortableInterceptor.ORBInitInfoPackage.DuplicateNameHelper;
 import spark.ModelAndView;
 import spark.template.velocity.VelocityTemplateEngine;
 
 
+import javax.persistence.criteria.CriteriaBuilder;
 import java.util.*;
 
 import static spark.Spark.get;
@@ -142,9 +144,9 @@ public class AdvertController {
             Map<String, Object> model = new HashMap<>();
             Integer id = Integer.parseInt(req.params(":id"));
             Advert advert = DBHelper.find(id, Advert.class);
-
+            Set<Comment> comments = DBAdvert.findCommentsByAdvert(advert);
             Set<DeliveryOption> deliveryOptions = DBAdvert.findDeliveryOptionsByAdvert(advert);
-
+            model.put("comments", comments);
             model.put("deliveryOptions", deliveryOptions);
             model.put("advert", advert);
             model.put("template", "templates/adverts/show.vtl");
@@ -159,6 +161,7 @@ public class AdvertController {
             res.redirect("/adverts");
             return null;
         });
+
 
     }
 

@@ -1,6 +1,8 @@
 package models;
 
 import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(name = "users")
@@ -19,6 +21,7 @@ public class User {
     private String contactEmail;
     private boolean archived;
 
+
     public User(String firstName, String lastName, String addressLine1, String addressLine2, String addressCity, String addressCounty, String addressPostcode, String username, String contactPhone, String contactEmail) {
         this.firstName = firstName;
         this.lastName = lastName;
@@ -31,6 +34,7 @@ public class User {
         this.contactPhone = contactPhone;
         this.contactEmail = contactEmail;
         this.archived = false;
+
     }
 
     public User() {

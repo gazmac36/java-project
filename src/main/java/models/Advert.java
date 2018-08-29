@@ -14,9 +14,10 @@ public class Advert {
     +description String
     +category Enum(Category)
     +askingPrice int
-    +deliveryOption Set<Enums>
+    +deliveryOption Set<DeliveryOption>
     +id int
     +archived boolean
+    +comments Set<Comment>
     -POJO functions
     */
 
@@ -27,6 +28,7 @@ public class Advert {
     private double askingPrice;
     private Set<DeliveryOption> deliveryOptions;
     private boolean archived;
+    private Set<Comment> comments;
 
     public Advert(String title, String description, Category category, double askingPrice) {
         this.title = title;
@@ -35,6 +37,7 @@ public class Advert {
         this.category = category;
         this.deliveryOptions = new HashSet<DeliveryOption>();
         this.archived = false;
+        this.comments = new HashSet<>();
     }
 
     public Advert() {
@@ -115,5 +118,14 @@ public class Advert {
 
     public void setArchived(boolean archived) {
         this.archived = archived;
+    }
+
+    @OneToMany(mappedBy = "advert", fetch = FetchType.LAZY)
+    public Set<Comment> getComments() {
+        return comments;
+    }
+
+    public void setComments(Set<Comment> comments) {
+        this.comments = comments;
     }
 }

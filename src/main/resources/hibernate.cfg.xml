@@ -17,6 +17,7 @@
         <mapping class = "models.User"/>
         <mapping class = "models.DeliveryOption"/>
         <mapping class = "models.Category"/>
+        <mapping class="models.Comment"/>
 
 
     </session-factory>
