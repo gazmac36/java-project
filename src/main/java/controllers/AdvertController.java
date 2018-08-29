@@ -2,10 +2,8 @@ package controllers;
 
 import db.DBAdvert;
 import db.DBHelper;
-import models.Advert;
-import models.Category;
-import models.Comment;
-import models.DeliveryOption;
+import db.DBUser;
+import models.*;
 import org.omg.PortableInterceptor.ORBInitInfoPackage.DuplicateNameHelper;
 import spark.ModelAndView;
 import spark.template.velocity.VelocityTemplateEngine;
@@ -143,9 +141,11 @@ public class AdvertController {
         get("/adverts/:id", (req, res) -> {
             Map<String, Object> model = new HashMap<>();
             Integer id = Integer.parseInt(req.params(":id"));
+            List<User> users = DBHelper.getAll(User.class);
             Advert advert = DBHelper.find(id, Advert.class);
             List<Comment> comments = DBAdvert.findCommentsByAdvert(advert);
             Set<DeliveryOption> deliveryOptions = DBAdvert.findDeliveryOptionsByAdvert(advert);
+            model.put("users",users);
             model.put("comments", comments);
             model.put("deliveryOptions", deliveryOptions);
             model.put("advert", advert);
@@ -162,6 +162,19 @@ public class AdvertController {
             return null;
         });
 
+        //add as a favorite
+        post("/adverts/:id/add-favourite", (req, res) -> {
+            Integer userId = Integer.parseInt(req.queryParams("user"));
+            Integer id = Integer.parseInt(req.params(":id"));
+            Advert advert = DBHelper.find(id, Advert.class);
+            User user = DBHelper.find(userId, User.class);
+            Set<Advert> favourites = DBUser.findUserFavouriteAds(user);
+            favourites.add(advert);
+            user.setFavourites(favourites);
+            DBHelper.save(user);
+            res.redirect("/adverts/" + req.params(":id"));
+            return null;
+        });
 
     }
 

@@ -1,5 +1,7 @@
 package models;
 
+import org.hibernate.annotations.Cascade;
+
 import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
@@ -20,6 +22,7 @@ public class User {
     private String contactPhone;
     private String contactEmail;
     private boolean archived;
+    private Set<Advert> favourites;
 
 
     public User(String firstName, String lastName, String addressLine1, String addressLine2, String addressCity, String addressCounty, String addressPostcode, String username, String contactPhone, String contactEmail) {
@@ -34,6 +37,7 @@ public class User {
         this.contactPhone = contactPhone;
         this.contactEmail = contactEmail;
         this.archived = false;
+        this.favourites = new HashSet<>();
 
     }
 
@@ -148,5 +152,22 @@ public class User {
 
     public void setArchived(boolean archived) {
         this.archived = archived;
+    }
+
+    @Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)
+    @ManyToMany
+    @JoinTable(name = "users_favourites",
+            joinColumns = {@JoinColumn(name = "user_id", nullable = false, updatable = false)},
+            inverseJoinColumns = {@JoinColumn(name = "advert_id", nullable = false, updatable = false)})
+    public Set<Advert> getFavourites() {
+        return favourites;
+    }
+
+    public void setFavourites(Set<Advert> favourites) {
+        this.favourites = favourites;
+    }
+
+    public void addFavourite(Advert advert){
+        this.favourites.add(advert);
     }
 }

@@ -37,6 +37,12 @@
 #if ($user.isArchived())
 <p>This user account is inactive.</p>
 #end
+<p>Favourite ads:</p>
+<ul>
+#foreach ($advert in $favourites)
+    <li><a href="/adverts/$advert.getId()">$advert.getTitle()</a></li>
+#end
+</ul>
 <form class="" action="/users/$user.getId()/edit" method="get">
     <input type="submit" name="submit" value="EDIT">
 </form>

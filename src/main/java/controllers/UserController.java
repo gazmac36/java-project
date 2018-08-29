@@ -1,6 +1,8 @@
 package controllers;
 
 import db.DBHelper;
+import db.DBUser;
+import models.Advert;
 import models.User;
 import spark.ModelAndView;
 import spark.template.velocity.VelocityTemplateEngine;
@@ -8,6 +10,7 @@ import spark.template.velocity.VelocityTemplateEngine;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import static spark.Spark.get;
 import static spark.Spark.post;
@@ -42,7 +45,7 @@ public class UserController {
             return new ModelAndView(model, "templates/layout.vtl");
         }, new VelocityTemplateEngine());
 
-        get ("/users/new", (req, res) -> {
+        get("/users/new", (req, res) -> {
             Map<String, Object> model = new HashMap<>();
             model.put("template", "templates/users/new.vtl");
             return new ModelAndView(model, "templates/layout.vtl");
@@ -51,7 +54,9 @@ public class UserController {
         get("/users/:id", (req, res) -> {
             Integer intId = Integer.parseInt(req.params(":id"));
             User user = DBHelper.find(intId, User.class);
+            Set<Advert> favourites = DBUser.findUserFavouriteAds(user);
             Map<String, Object> model = new HashMap<>();
+            model.put("favourites", favourites);
             model.put("user", user);
             model.put("template", "templates/users/show.vtl");
             return new ModelAndView(model, "templates/layout.vtl");
@@ -75,7 +80,7 @@ public class UserController {
             return null;
         });
 
-        get ("/users/:id/delete", (req, res) -> {
+        get("/users/:id/delete", (req, res) -> {
             Map<String, Object> model = new HashMap<>();
             String strId = req.params(":id");
             Integer intId = Integer.parseInt(strId);
@@ -85,7 +90,7 @@ public class UserController {
             return new ModelAndView(model, "templates/layout.vtl");
         }, new VelocityTemplateEngine());
 
-        post ("/users/:id/delete", (req, res) -> {
+        post("/users/:id/delete", (req, res) -> {
             String strId = req.params(":id");
             Integer intId = Integer.parseInt(strId);
             User userToDelete = DBHelper.find(intId, User.class);
@@ -94,7 +99,7 @@ public class UserController {
             return null;
         }, new VelocityTemplateEngine());
 
-        post ("/users", (req, res) -> {
+        post("/users", (req, res) -> {
             String firstName = req.queryParams("firstName");
             String lastName = req.queryParams("lastName");
             String addressLine1 = req.queryParams("addressLine1");
@@ -113,8 +118,7 @@ public class UserController {
         }, new VelocityTemplateEngine());
 
 
-
-        post ("/users/:id", (req, res) -> {
+        post("/users/:id", (req, res) -> {
             String strId = req.params(":id");
             Integer intId = Integer.parseInt(strId);
             User user = DBHelper.find(intId, User.class);
@@ -155,6 +159,8 @@ public class UserController {
             return null;
         });
 
+
+
     }
-    
+
 }
