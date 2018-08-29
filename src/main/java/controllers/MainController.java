@@ -3,6 +3,7 @@ package controllers;
 import db.DBHelper;
 import db.Seeds;
 import models.Category;
+import models.Comment;
 import spark.ModelAndView;
 import spark.template.velocity.VelocityTemplateEngine;
 
@@ -24,6 +25,7 @@ public class MainController {
         CategoryController categoryController = new CategoryController();
         DeliveryOptionController deliveryOptionController = new DeliveryOptionController();
         UserController userController = new UserController();
+        CommentController commentController = new CommentController();
 
         get("/", (req, res) -> {
             Map<String, Object> model = new HashMap<>();
