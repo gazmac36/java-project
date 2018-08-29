@@ -6,7 +6,6 @@
 <th>Description</th>
 <th>Category</th>
 <th>Asking Price</th>
-<th>Delivery Options</th>
 <th>Status</th>
 <th></th>
 </tr>
@@ -17,7 +16,6 @@
     <td>$advert.getDescription()</td>
     <td>$advert.getCategory().getCategoryName()</td>
     <td>$advert.getAskingPrice()</td>
-    <td></td>
     <td>#if (!$advert.isArchived()) <i class="fas fa-check"></i> #else <i class="fas fa-times"></i> #end</td>
     <td><a href="/adverts/$advert.getId()"><i class="far fa-eye fa-2x"></i></a>
 </tr>
@@ -29,13 +27,9 @@
     <td>$advert.getDescription()</td>
     <td>$advert.getCategory().getCategoryName()</td>
     <td>$advert.getAskingPrice()</td>
-    <td></td>
     <td class="icon">#if (!$advert.isArchived()) <i class="fas fa-check fa-2x"></i> #else <i class="fas fa-times fa-2x"> #end</td>
     <td><a href="/adverts/$advert.getId()"><i class="far fa-eye fa-2x"></i></a>
 </tr>
 #end
 #end
 </table>
-<form class="" action="/adverts/new" method="get">
-<input type="submit" name="submit" value="NEW">
-</form>

@@ -1,5 +1,16 @@
-<a href="/delivery-options/new">Create new delivery option</a>
-#foreach ($option in $deliveryOptions)
-<h4>$option.getTitle() #if ($option.isArchived()) DEPRECATED #end</h4>
-<a href="delivery-options/$option.getId()">View</a>
-#end
+<h3>Delivery Options</h3>
+
+<table>
+    <tr>
+        <th>Delivery Option</th>
+        <th>Status</th>
+        <th></th>
+    </tr>
+    #foreach ($option in $deliveryOptions)
+    <tr>
+        <td>$option.getTitle()</td>
+        <td>#if (!$option.isArchived()) <i class="fas fa-check"></i> #else <i class="fas fa-times"></i> #end</td>
+        <td><a href="delivery-options/$option.getId()"><i class="far fa-eye fa-2x"></a></td>
+    </tr>
+    #end
+</table>
