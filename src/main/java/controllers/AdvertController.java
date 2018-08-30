@@ -25,6 +25,15 @@ public class AdvertController {
     private void setupEndpoints() {
 
 
+
+        get("/adverts/category", (req, res) -> {
+            Map<String, Object> model = new HashMap<>();
+            List<Category> categories = DBHelper.getAll(Category.class);
+            model.put("categories", categories);
+            model.put("template","templates/adverts/showByCategory.vtl");
+            return new ModelAndView(model, "templates/layout.vtl");
+        }, new VelocityTemplateEngine());
+
         //index
         get("/adverts", (req, res) -> {
             Map<String, Object> model = new HashMap<>();

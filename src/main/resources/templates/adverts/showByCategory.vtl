@@ -1,0 +1,11 @@
+<h3>View Adverts by Category</h3>
+
+<article id="ads-by-cat">
+<ul>
+    #foreach ($category in $categories)
+    #if (!$category.isArchived())
+    <li><a href="/categories/$category.getId()/adverts">$category.getCategoryName()</a></li>
+    #end
+    #end
+</ul>
+</article>

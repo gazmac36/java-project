@@ -1,23 +1,29 @@
-<div>
-    <h3>Delivery option $deliveryOption.getTitle()</h3>
-    <h2>Title:</h2>
-    <p>$deliveryOption.getTitle()</p>
-    <h2>Price:</h2>
-    <p>$deliveryOption.getPrice()</p>
-</div>
+<h3>DELIVERY OPTION: $deliveryOption.getTitle()
+    <a href="/delivery-options/$deliveryOption.getId()/edit"><i class="fas fa-user-edit"></i></a>
+</h3>
 
-#if ($deliveryOption.isArchived())
-<p>This delivery option has been deprecated.</p>
-#end
 
-<a href="/delivery-options">Go back</a>
-<a href="/delivery-options/$deliveryOption.getId()/edit">Edit</a>
+<table class="show">
+    <tr>
+        <th>Name</th>
+        <td>$deliveryOption.getTitle()</td>
+    </tr>
+    <tr>
+        <th>Price</th>
+        <td>$deliveryOption.getPrice()</td>
+    </tr>
+    <tr>
+        <th>Status</th>
+        <td>#if ($deliveryOption.isArchived()) Deprecated #else Active #end</td>
+    </tr>
+</table>
+
 #if (!$deliveryOption.isArchived())
 <form action="/delivery-options/$deliveryOption.getId()/archive" method="get">
-    <button type="submit">Archive</button>
+    <input class="archive" type="submit" name="submit" value="ARCHIVE">
 </form>
 #else
 <form action="/delivery-options/$deliveryOption.getId()/unarchive" method="post">
-    <button type="submit">Unarchive</button>
+    <input class="archive" type="submit" name="submit" value="UNARCHIVE">
 </form>
 #end

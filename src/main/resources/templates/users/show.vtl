@@ -1,12 +1,14 @@
-<h3>$user.getFirstName() $user.getLastName()</h3>
+<h3>USER : $user.getFirstName() $user.getLastName()
+    <a href="/users/$user.getId()/edit"><i class="fas fa-user-edit"></i></a>
+    <a href="/users/$user.getId()/delete"><i class="fas fa-trash-alt"></i></a>
+</h3>
 
-<table>
+
+
+<table class="show">
     <tr>
-        <th>Address</th>
+        <th>ADDRESS : </th>
         <td>$user.getAddressLine1()</td>
-    <tr>
-        <th></th>
-        <td>$user.getAddressLine2()</td>
     </tr>
     <tr>
         <th></th>
@@ -15,47 +17,44 @@
     <tr>
         <th></th>
         <td>$user.getAddressCounty()</td>
+    </tr>
     <tr>
         <th></th>
         <td>$user.getAddressPostcode()</td>
     </tr>
     <tr>
-        <th>Username</th>
+        <th>USERNAME : </th>
         <td>$user.getUsername()</td>
     </tr>
     <tr>
-        <th>Phone</th>
+        <th>PHONE : </th>
         <td>$user.getContactPhone()</td>
     </tr>
     <tr>
-        <th>Email</th>
+        <th>EMAIL : </th>
         <td>$user.getContactEmail()</td>
+    </tr>
+    <tr>
+        <th>FAVOURITES : </th>
+        <td>
+            <ul>
+                #foreach ($advert in $favourites)
+                <li><a href="/adverts/$advert.getId()">$advert.getTitle()</a></li>
+                #end
+            </ul>
+        </td>
     </tr>
 </table>
 #if ($user.isArchived())
 <p>This user account is inactive.</p>
 #end
-<p>Favourite ads:</p>
-<ul>
-#foreach ($advert in $favourites)
-    <li><a href="/adverts/$advert.getId()">$advert.getTitle()</a></li>
-#end
-</ul>
-<form class="" action="/users/$user.getId()/edit" method="get">
-    <input type="submit" name="submit" value="EDIT">
-</form>
+
 #if (!$user.isArchived())
 <form class="" action="/users/$user.getId()/archive" method="get">
-    <input type="submit" name="submit" value="ARCHIVE">
+    <input class="archive" type="submit" name="submit" value="ARCHIVE">
 </form>
 #else
 <form class="" action="/users/$user.getId()/unarchive" method="post">
-    <input type="submit" name="submit" value="UNARCHIVE">
+    <input class="archive" type="submit" name="submit" value="UNARCHIVE">
 </form>
 #end
-<form class="" action="/users/$user.getId()/delete" method="get">
-    <input type="submit" name="submit" value="DELETE">
-</form>
-<form class="" action="/users" method="get">
-    <input type="submit" name="submit" value="CANCEL">
-</form>

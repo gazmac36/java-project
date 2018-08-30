@@ -1,14 +1,17 @@
-<p class="pageHeader">New advert</p>
+<h3>New advert</h3>
 
-<form action="/adverts" method="post">
-        <label for="title">Advert title:</label>
-        <input class="inputbox" type="text" name="title" required="true" id="title">
+<form id="new-advert" action="/adverts" method="post">
+        <label for="title"></label>
+        <input class="new-advert" type="text" name="title" required="true" id="title" placeholder="advert title">
 
-        <label for="description">Description</label>
-        <input type="text" class="inputbox" name="description" required="true" id="description">
+        <label for="description"></label>
+        <input type="text" class="new-advert" name="description" required="true" id="description" placeholder=" advert description">
 
-        <label for="category">Category:</label>
-        <select id="category" name="category">
+        <label for="price"></label>
+        <input type="number" class="new-advert" name="askingPrice" required="true" id="price" placeholder="asking price">
+
+        <label id="category-label" for="category">Category:</label>
+        <select class="category-dd" id="category" name="category">
                 #foreach( $category in $categories )
                 #if (!$category.isArchived())
                 <option value="$category.getId()">$category.getCategoryName()</option>
@@ -16,17 +19,13 @@
                 #end
         </select>
 
-        <label for="price">Asking price:</label>
-        <input type="number" class="inputbox" name="askingPrice" required="true" id="price">
-
+        <article id="checkboxes">
         #foreach( $option in $deliveryOptions)
         #if (!$option.isArchived())
         <input type="checkbox" value="$option.getId()_option" id="deliveryOption" name="$option.getId()_option">
         <label for="deliveryOption">$option.getTitle()</label>
         #end
         #end
-
-
-        <button type="submit">Submit form</button>
+        </article>
+        <input class="archive" type="submit" value="ADD">
 </form>
-<a href="/delivery-options">Go back</a>

@@ -4,11 +4,13 @@
 <table>
     <tr>
         <th>Category Name</th>
+        <th>Status</th>
         <th></th>
     </tr>
 #foreach ($category in $categories)
 <tr>
-    <td>$category.getCategoryName() #if ($category.isArchived()) DEPRECATED #end</td>
+    <td>$category.getCategoryName()</td>
+    <td>  #if (!$category.isArchived()) <i class="fas fa-check fa-2x"></i> #else <i class="fas fa-times fa-2x"></i> #end</td>
     <td><a href="/categories/$category.getId()"><i class="far fa-eye fa-2x"></a></td>
 </tr>
 #end

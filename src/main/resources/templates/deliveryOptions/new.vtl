@@ -1,11 +1,11 @@
 <h3>New delivery method</h3>
-<form action="/delivery-options" method="post">
-    <label for="title">Delivery method's title:</label>
-    <input type="text" class="inputbox" name="title" id="title" required="true">
+<form id="new-delivery" action="/delivery-options" method="post">
+    <label for="title"></label>
+    <input class="new-delivery" type="text" class="inputbox" name="title" id="title" placeholder="enter a title . . ." required="true">
 
-    <label for="price">Delivery method's price:</label>
-    <input type="number" class="inputbox" name="price" id="price" required="true">
+    <label for="price"></label>
+    <input class="new-delivery" type="number" class="inputbox" name="price" id="price" placeholder="enter a price . . ." required="true">
 
-    <button type="submit">Submit form</button>
+    <input class="archive" type="submit" name="submit" value="ADD">
 
 </form>

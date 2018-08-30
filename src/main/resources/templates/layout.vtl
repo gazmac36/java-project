@@ -1,5 +1,6 @@
 <html>
 <head>
+    <link rel="icon" href="/images/favicon.png">
     <link rel="stylesheet" href="/stylesheet.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css"
           integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
@@ -28,6 +29,7 @@
                 <div class="dropdown-content">
                     <a href="/adverts/new">New</a>
                     <a href="/adverts">View all</a>
+                    <a href="/adverts/category">Category</a>
                 </div>
             </div>
             </li>
@@ -58,9 +60,9 @@
 
             <div class="search">
                 <form action="/adverts" method="get">
-            <input name="query" type="text" placeholder="search for an item . . .">
+            <input id="query" name="query" type="text" placeholder="search for an item . . .">
             <button class="search-btn" type="submit">
-                <i class="fas fa-search"></i>
+                <i class="fas fa-search fa-2x"></i>
             </button>
                 </form>
             </div>

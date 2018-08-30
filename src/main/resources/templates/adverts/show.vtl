@@ -1,19 +1,22 @@
-<h3>Advert for $advert.getTitle()</h3>
+<h3>ADVERT: $advert.getTitle()
+<a href="/adverts/$advert.getId()/edit"><i class="fas fa-user-edit"></i></a>
+<a href="/adverts/$advert.getId()/delete"><i class="fas fa-trash-alt"></i></a>
+</h3>
 
-<table>
+<table class="show">
     <tr>
-        <th>Description</th>
+        <th>DESCRIPTION : </th>
         <td>$advert.getDescription()</td>
     <tr>
-        <th>Asking Price</th>
+        <th>ASKING PRICE : </th>
         <td>£$advert.getAskingPrice()</td>
     </tr>
     <tr>
-        <th>Category</th>
+        <th>CATEGORY : </th>
         <td>$advert.getCategory().getCategoryName()</td>
     </tr>
     <tr>
-        <th>Delivery options</th>
+        <th>DELIVERY OPTIONS : </th>
         <td>
             <ul>
             #foreach($option in $deliveryOptions)
@@ -27,24 +30,20 @@
     </tr>
 </table>
 
-<form class="" action="/adverts/$advert.getId()/edit" method="get">
-    <input type="submit" name="submit" value="EDIT">
-</form>
 #if (!$advert.isArchived())
 <form action="/adverts/$advert.getId()/archive" method="get">
-    <input type="submit" value="ARCHIVE">
+    <input class="archive" type="submit" value="ARCHIVE">
 </form>
 #else
 <form action="/adverts/$advert.getId()/unarchive" method="post">
-    <input type="submit" value="UNARCHIVE">
+    <input class="archive" type="submit" value="UNARCHIVE">
 </form>
 #end
 
-<form action="/adverts/$advert.getId()/delete" method="get">
-    <input type="submit" value="DELETE">
-</form>
+<article id="favourite">
 <p>Add advert as a favourite to a user:</p>
-<form action="/adverts/$advert.getId()/add-favourite" method="post">
+    <i class="far fa-heart fa-2x"></i>
+    <form action="/adverts/$advert.getId()/add-favourite" method="post">
     <select id="user" name="user">
         #foreach( $user in $users )
         #if (!$user.isArchived())
@@ -52,23 +51,26 @@
         #end
         #end
     </select>
-    <button type="submit">Add to this user's favourite</button>
+    <input type="submit" value="ADD">
 </form>
+</article>
+
+
 <h3>Comments ($comments.size())</h3>
 <form action="/adverts/$advert.getId()/post-comment" method="post">
     <textarea placeholder="text" name="body" rows="4" cols="50">
     </textarea>
-    <input type="submit" value="Add">
+    <input class="archive" type="submit" value="ADD">
 </form>
 
-<ul>
+<article id="comments">
     #foreach ($comment in $comments)
-    <li>$comment.getBody()</li>
-    <li>
-        <form action="/adverts/$advert.getId()/$comment.getId()/delete" method="post">
-            <button type="submit">Delete</button>
-        </form>
-    </li>
-    #end
+    <p>$comment.getBody()</p>
+
+    <form action="/adverts/$advert.getId()/$comment.getId()/delete" method="post">
+    <input class="archive" type="submit" value="DELETE">
+    </form>
+#end
 </ul>
+</article>
 

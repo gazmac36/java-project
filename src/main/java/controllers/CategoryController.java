@@ -24,7 +24,6 @@ public class CategoryController {
     private void setupEndpoints() {
 
 
-
         get("categories/:id/adverts", (req,res) -> {
             Integer intId = Integer.parseInt(req.params("id"));
             Category category = DBHelper.find(intId, Category.class);
