@@ -39,7 +39,7 @@ public class UserController {
 
         get("/users", (req, res) -> {
             Map<String, Object> model = new HashMap<>();
-            List<User> users = DBHelper.getAll(User.class);
+            List<User> users = DBUser.getAllByFirstName(User.class);
             model.put("template", "templates/users/index.vtl");
             model.put("users", users);
             return new ModelAndView(model, "templates/layout.vtl");

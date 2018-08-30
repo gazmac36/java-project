@@ -50,7 +50,7 @@ public class CategoryController {
 
         get("/categories", (req, res) -> {
             Map<String, Object> model = new HashMap<>();
-            List<Category> categories = DBHelper.getAll(Category.class);
+            List<Category> categories = DBCategory.getAllByCategoryName(Category.class);
             model.put("template", "templates/categories/index.vtl");
             model.put("categories", categories);
             return new ModelAndView(model, "templates/layout.vtl");
