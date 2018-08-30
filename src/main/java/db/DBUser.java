@@ -6,6 +6,8 @@ import models.User;
 import org.hibernate.Criteria;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
+import org.hibernate.Transaction;
+import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Restrictions;
 
 import java.util.HashSet;
@@ -15,6 +17,7 @@ import java.util.Set;
 public class DBUser {
 
     private static Session session;
+    private static Transaction transaction;
 
     public static Set<Advert> findUserFavouriteAds(User user) {
         List<Advert> results = null;
@@ -35,25 +38,36 @@ public class DBUser {
             favourites.add(item);
         }
         return favourites;
-        /*
-        List<DeliveryOption> results = null;
-        session = HibernateUtil.getSessionFactory().openSession();
+    }
+    public static <T> List<T> getList(Criteria criteria) {
+        List<T> results = null;
         try {
-            Criteria cr = session.createCriteria(DeliveryOption.class);
-            cr.createAlias("adverts", "advert");
-            cr.add(Restrictions.eq("advert.id", advert.getId()));
-            results = cr.list();
-
+            transaction = session.beginTransaction();
+            results = criteria.list();
+            ;
+            transaction.commit();
         } catch (HibernateException ex) {
+            transaction.rollback();
             ex.printStackTrace();
         } finally {
             session.close();
         }
-        Set<DeliveryOption> deliveryOptions = new HashSet<>();
-        for (DeliveryOption item : results) {
-            deliveryOptions.add(item);
-        }
-        return deliveryOptions;
-         */
+        return results;
+    }
+
+    public static <T> List<T> getAllNotArchivedByFirstName(Class classType){
+        session = HibernateUtil.getSessionFactory().openSession();
+        Criteria cr = session.createCriteria(classType);
+        cr.add(Restrictions.eq("archived", false));
+        cr.addOrder(Order.asc("firstName"));
+        return getList(cr);
+    }
+
+    public static <T> List<T> getAllByFirstName(Class classType) {
+        session = HibernateUtil.getSessionFactory().openSession();
+        Criteria cr = session.createCriteria(classType);
+        cr.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY);
+        cr.addOrder(Order.asc("firstName"));
+        return getList(cr);
     }
 }

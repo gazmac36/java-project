@@ -1,6 +1,7 @@
 package controllers;
 
 import db.DBAdvert;
+import db.DBCategory;
 import db.DBHelper;
 import db.DBUser;
 import models.*;
@@ -28,7 +29,7 @@ public class AdvertController {
         //index
         get("/adverts", (req, res) -> {
             Map<String, Object> model = new HashMap<>();
-            List<Advert> adverts = DBHelper.getAll(Advert.class);
+            List<Advert> adverts = DBHelper.getAllById(Advert.class);
             List<Advert> searchResult = DBAdvert.searchForAdvert(req.queryParams("query"));
             model.put("results", searchResult);
             model.put("adverts", adverts);
@@ -38,8 +39,8 @@ public class AdvertController {
         //new
         get("/adverts/new", (req, res) -> {
             Map<String, Object> model = new HashMap<>();
-            List<Category> categories = DBHelper.getAll(Category.class);
-            List<DeliveryOption> deliveryOptions = DBHelper.getAll(DeliveryOption.class);
+            List<Category> categories = DBCategory.getAllNotArchivedByCategoryName(Category.class);
+            List<DeliveryOption> deliveryOptions = DBHelper.getAllNotArchivedById(DeliveryOption.class);
             model.put("categories", categories);
             model.put("deliveryOptions", deliveryOptions);
             model.put("template", "templates/adverts/new.vtl");
@@ -66,8 +67,8 @@ public class AdvertController {
         get("/adverts/:id/edit", (req, res) -> {
             Map<String, Object> model = new HashMap<>();
             Integer id = Integer.parseInt(req.params(":id"));
-            List<Category> categories = DBHelper.getAll(Category.class);
-            List<DeliveryOption> deliveryOptions = DBHelper.getAll(DeliveryOption.class);
+            List<Category> categories = DBCategory.getAllNotArchivedByCategoryName(Category.class);
+            List<DeliveryOption> deliveryOptions = DBHelper.getAllNotArchivedById(DeliveryOption.class);
             Advert advert = DBHelper.find(id, Advert.class);
 
             Set<DeliveryOption> advertDeliveryOptions = DBAdvert.findDeliveryOptionsByAdvert(advert);
@@ -141,7 +142,7 @@ public class AdvertController {
         get("/adverts/:id", (req, res) -> {
             Map<String, Object> model = new HashMap<>();
             Integer id = Integer.parseInt(req.params(":id"));
-            List<User> users = DBHelper.getAll(User.class);
+            List<User> users = DBUser.getAllNotArchivedByFirstName(User.class);
             Advert advert = DBHelper.find(id, Advert.class);
             List<Comment> comments = DBAdvert.findCommentsByAdvert(advert);
             Set<DeliveryOption> deliveryOptions = DBAdvert.findDeliveryOptionsByAdvert(advert);

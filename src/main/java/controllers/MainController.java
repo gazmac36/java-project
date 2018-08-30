@@ -1,5 +1,6 @@
 package controllers;
 
+import db.DBCategory;
 import db.DBHelper;
 import db.Seeds;
 import models.Category;
@@ -29,7 +30,7 @@ public class MainController {
 
         get("/", (req, res) -> {
             Map<String, Object> model = new HashMap<>();
-            List<Category> categories = DBHelper.getAll(Category.class);
+            List<Category> categories = DBCategory.getAllNotArchivedByCategoryName(Category.class);
             model.put("categories", categories);
             model.put("template","templates/main.vtl");
             return new ModelAndView(model, "templates/layout.vtl");

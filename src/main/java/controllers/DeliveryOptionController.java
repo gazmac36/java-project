@@ -27,7 +27,7 @@ public class DeliveryOptionController {
         //index
         get("/delivery-options", (req, res) -> {
             Map<String, Object> model = new HashMap<>();
-            List<DeliveryOption> deliveryOptions = DBHelper.getAll(DeliveryOption.class);
+            List<DeliveryOption> deliveryOptions = DBHelper.getAllByTitle(DeliveryOption.class);
             model.put("deliveryOptions", deliveryOptions);
             model.put("template", "templates/deliveryOptions/index.vtl");
             return new ModelAndView(model, "templates/layout.vtl");

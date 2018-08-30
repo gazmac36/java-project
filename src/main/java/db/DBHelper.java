@@ -41,7 +41,23 @@ public class DBHelper {
         return results;
     }
 
-    public static <T> List<T> getAllNotArchived(Class classType){
+    public static <T> List<T> getAllNotArchivedByTitle(Class classType){
+        session = HibernateUtil.getSessionFactory().openSession();
+        Criteria cr = session.createCriteria(classType);
+        cr.add(Restrictions.eq("archived", false));
+        cr.addOrder(Order.asc("title"));
+        return getList(cr);
+    }
+
+    public static <T> List<T> getAllByTitle(Class classType) {
+        session = HibernateUtil.getSessionFactory().openSession();
+        Criteria cr = session.createCriteria(classType);
+        cr.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY);
+        cr.addOrder(Order.asc("title"));
+        return getList(cr);
+    }
+
+    public static <T> List<T> getAllNotArchivedById(Class classType){
         session = HibernateUtil.getSessionFactory().openSession();
         Criteria cr = session.createCriteria(classType);
         cr.add(Restrictions.eq("archived", false));
@@ -49,7 +65,7 @@ public class DBHelper {
         return getList(cr);
     }
 
-    public static <T> List<T> getAll(Class classType) {
+    public static <T> List<T> getAllById(Class classType) {
         session = HibernateUtil.getSessionFactory().openSession();
         Criteria cr = session.createCriteria(classType);
         cr.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY);
