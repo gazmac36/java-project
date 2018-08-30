@@ -45,9 +45,6 @@ public class MainController {
             model.put("results", searchResult);
             model.put("adverts", adverts);
             model.put("template", "templates/adverts/index.vtl");
-            List<Category> categories = DBCategory.getAllNotArchivedByCategoryName(Category.class);
-            model.put("categories", categories);
-            model.put("template","templates/main.vtl");
             return new ModelAndView(model, "templates/layout.vtl");
         }, new VelocityTemplateEngine());
 
