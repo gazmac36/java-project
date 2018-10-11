@@ -1,5 +1,4 @@
 # Java Project Definition - Paired 
-## Totally *not* Gumtree
 
 Goal: Create a web application in Spark with Hibernate/Java back end.
 ### MVP
